@@ -1,48 +1,12 @@
 const list = document.querySelector('.list');
-
 const sort_name_btn = document.querySelector('.sort-name');
 const sort_ID_btn = document.querySelector('.sort-ID');
 const sort_date_btn = document.querySelector('.sort-date');
 const sort_status_btn = document.querySelector('.sort-status');
+const add_form_btn = document.querySelector('.add-form');
+const remove_form_btn = document.querySelector('.remove-form');
 
-const list_items = [
-    {
-        name: "Lam Quoc Hieu",
-        ID: '1111',
-        date: '10/05/2023',
-        status: 'Pending',
-    },
-    {
-        name: "Walter White",
-        ID: '1111',
-        date: '10/05/2023',
-        status: 'Pending',
-    },        
-    {
-        name: "Ho Ngoc Ha",
-        ID: '4412',
-        date: '10/05/2021',
-        status: 'Pending',
-    },
-    {
-        name: "Den Vau",
-        ID: '4412',
-        date: '10/05/2021',
-        status: 'Pending',
-    },
-    {
-        name: "Erik",
-        ID: '4412',
-        date: '10/05/2021',
-        status: 'Pending',
-    },
-    {
-        name: "Ha Anh Tuan",
-        ID: '3333',
-        date: '10/05/2022',
-        status: 'Complete',
-    },
-];
+const list_items = [data];
 
 let sorter = false;
 function sortNameButton(sorter){
@@ -145,7 +109,13 @@ function item() {
     // additional logic for item function
 }
 
-
+function add_btn(){
+    
+}
+add_form_btn.addEventListener('click', () => {
+    console.log("addEventListener");
+    console.log("sorter: ", sorter);
+    return sortNameButton(sorter)}, false);
 
 window.onload = function(){
     displayList(list_items);
