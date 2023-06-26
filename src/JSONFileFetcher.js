@@ -3,19 +3,33 @@
 // export
 
 function JSONFileFetcher(){
-    let result = [];
+    let result;
     fetch("./user.json").then(response => {
         return response.json();
         }).then(data => {
             // appendData(data)
-            result = data;
-        console.log(data);
+            console.log("1");
+            result = data.requests;
+            console.log("This is JSON FETCHER", result);
+          
             }).catch(err => {
             console.log("Error");
         });
-    console.log("import working?");
-    return result;
+        console.log("This is JSON", result);
+        return result;
+
+        
 }
+JSONFileFetcher()
+  .then(result => {
+    console.log("Received result:", result);
+    // Do something with the result
+   })
+  .catch(error => {
+    console.log("Error occurred:", error);
+});
+
+
     // function appendData(data){
     //     let mainContainer = document.getElementById("myData");
     //     for(let i = 0; i < data.length; i++){

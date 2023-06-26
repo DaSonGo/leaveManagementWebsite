@@ -1,5 +1,7 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
-
+import sortingOptions from "./sortingOptions.js";
+import addForm from "./addForm.js";
+import formPage from "./formPage.js";
 // import JSONFileFetcher from "./JSONFileFetcher.js";
     const list = document.querySelector('.list');
     const myData = document.querySelector('.myData');
@@ -12,9 +14,9 @@ import JSONFileFetcher from "./JSONFileFetcher.js";
 
     //const list_items = [JSON.parse(JSONFileFetcher)];
     // JSONFileFetcher();
-    //const list_items = JSONFileFetcher();
-    const list_items = [JSONFileFetcher()];
-    list_items.push(JSONFileFetcher());
+    const list_items = JSONFileFetcher();
+    console.log ("HI", list_items);
+    console.log("======================", JSONFileFetcher);
     let sorter = false;
     function sortNameButton(sorter) {
         console.log("sortNameButton", sorter)
@@ -88,9 +90,11 @@ import JSONFileFetcher from "./JSONFileFetcher.js";
     }
     function displayList(array = []) {
         list.innerHTML = "";
-
+        console.log(array);
         for (let i = 0; i < array.length; i++) {
+            
             let item = array[i];
+
 
             let item_element = document.createElement('div');
             item_element.classList.add('list-item');
@@ -148,6 +152,9 @@ import JSONFileFetcher from "./JSONFileFetcher.js";
     //     console.log("sorter: ", sorter);
     //     return sortNameButton(sorter)}, false);
 
+    console.log(addForm());
+    console.log(sortingOptions());
+    console.log(formPage());
     window.onload = function () {
         displayList(list_items);
     }
