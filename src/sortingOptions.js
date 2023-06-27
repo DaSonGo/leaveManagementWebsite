@@ -4,6 +4,4 @@ function sortingOptions(){
     return msg;
 }
 
-
-
 export default sortingOptions;
