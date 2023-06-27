@@ -30,7 +30,7 @@ main .sort-options{
     justify-content: space-between;
     
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
 
     margin: 30px auto;
 }
@@ -60,7 +60,7 @@ main .list-headers {
     justify-content: space-between;
     
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
 
     margin: 30px auto 0px;
     padding: 0px 15px;

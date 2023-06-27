@@ -21,21 +21,14 @@
 
 
 
-// function appendData(data){
-//     let mainContainer = document.getElementById("myData");
-//     for(let i = 0; i < data.length; i++){
-//         let div = document.createElement('div');
-//         div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
-//         mainContainer.appendData(div);
-//     }
-// }
-
 // console.log(JSONFileFetcher );
 
 async function JSONFileFetcher() {
     const result = await fetch('./user.json');
     const data = await result.json();
-    console.log("=================== Async", data);
-  }
+    console.log("=================== Async", data.requests);
+    return data.requests;
+}
+
 
 export default JSONFileFetcher
