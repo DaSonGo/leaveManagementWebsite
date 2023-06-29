@@ -1,88 +1,53 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
-//import sortingOptions from "./sortingOptions.js";
+
 import addForm from "./addForm.js";
 import formPage from "./formPage.js";
 // import displayList from "./displayList.js";
-//import listLoader from "./listLoader.js";
-const list = document.querySelector(".list");
+import { createAndAppendElement } from "./listLoader.js";
+import listLoader from "./listLoader.js";
+//import sortingOptions from "./sortingOptions.js";
 
+export const list = document.querySelector(".list");
 const list_items = await JSONFileFetcher();
-// console.log("these are list items", list_items);
-// let sorter = false;
 
-// function createItemElement() {
-//   let item_element = document.createElement("div");
-//   item_element.classList.add("list-item");
-// }
 
-// function displayList(array = []) {
-//   list.innerHTML = "";
-//   console.log("in displayList");
-//   for (let i = 0; i < array.length; i++) {
-//     let item = array[i];
+const sort_first_name_btn = document.querySelector(".sort-first-name");
+const sort_last_name_btn = document.querySelector(".sort-last-name");
+const sort_ID_btn = document.querySelector(".sort-ID");
+const sort_date_btn = document.querySelector(".sort-date");
+const sort_status_btn = document.querySelector(".sort-status");
 
-//     let item_element = document.createElement("div");
-//     item_element.classList.add("list-item");
+let sorter = false;
 
-//     let firstName = document.createElement("div");
-//     firstName.classList.add("item-firstName");
-//     firstName.innerText = item.firstName;
-
-//     item_element.appendChild(firstName);
-
-//     let lastName = document.createElement("div");
-//     lastName.classList.add("item-lastName");
-//     lastName.innerText = item.lastName;
-
-//     item_element.appendChild(lastName);
-
-//     let ID = document.createElement("div");
-//     ID.classList.add("item-ID");
-//     ID.innerText = item.ID;
-
-//     item_element.appendChild(ID);
-
-//     let date = document.createElement("div");
-//     date.classList.add("item-date");
-//     date.innerText = item.date;
-
-//     item_element.appendChild(date);
-
-//     let status = document.createElement("div");
-//     status.classList.add("item-status");
-//     status.innerText = item.status;
-
-//     item_element.appendChild(status);
-
-//     list.appendChild(item_element);
-//     console.log("List  displayed!");
-//   }
-// }
-function createAndAppendElement(parentElement, elementType, className, textContent) {
-  const element = document.createElement(elementType);
-  element.classList.add(className);
-  element.innerText = textContent;
-  parentElement.appendChild(element);
+function sortOptionsClickHandler(property, buttonElement) {
+  console.log(`handleSortButtonClick: ${property}`, sorter);
+  sorter = !sorter;
+  console.log("sorter: ", sorter);
+  sortItems(property, sorter);
 }
-function listLoader(array = []) {
+function sort_array_by(array, sort, desc = false) {
+  console.log("sort_array_by", array, sort, desc);
+  array.sort(function (a, b) {
+    if (a[sort] < b[sort]) return -1;
+    if (a[sort] > b[sort]) return 1;
+    return 0;
+  });
 
-  list.innerHTML = "";
-  console.log("in displayList");
-
-  for (let i = 0; i < array.length; i++) {
-    let item = array[i];
-
-    let item_element = document.createElement("div");
-    item_element.classList.add("list-item");
-
-    createAndAppendElement(item_element, 'div', 'item-firstName', item.firstName);
-    createAndAppendElement(item_element, 'div', 'item-lastName', item.lastName);
-    createAndAppendElement(item_element, 'div', 'item-ID', item.ID);
-    createAndAppendElement(item_element, 'div', 'item-date', item.date);
-    createAndAppendElement(item_element, 'div', 'item-status', item.status);
-
-    list.appendChild(item_element);
-    console.log("List displayed!");
-  }
+  if (desc) array.reverse();
+  return array;
 }
+function sortItems(property, sorter) {
+  console.log("sortItem running");
+  let array = sort_array_by(list_items, property, sorter);
+  listLoader(array);
+}
+
+sort_first_name_btn.addEventListener('click', () => sortOptionsClickHandler(".sort-first-name", sort_first_name_btn));
+sort_last_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort-last-name", sort_last_name_btn));
+sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("sort-ID", sort_ID_btn));
+sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("sort-date", sort_date_btn));
+sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("sort-status", sort_status_btn));
+
+
+
 listLoader(list_items);

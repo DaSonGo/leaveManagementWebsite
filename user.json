@@ -3,30 +3,30 @@
         {
             "firstName": "Everfit",
             "lastName": "Technologies",
-            "ID": "1111",
-            "status":"false",
-            "date":"10/20/2023"
-        },    
+            "ID": "1234",
+            "status": "deny",
+            "date": "10/20/2023"
+        },
         {
             "firstName": "Apple",
             "lastName": "Technologies",
-            "ID": "1111",
-            "status":"false",
-            "date":"10/20/2023"
-        },        
+            "ID": "2314",
+            "status": "deny",
+            "date": "10/20/2023"
+        },
         {
             "firstName": "Google",
             "lastName": "Technologies",
-            "ID": "1111",
-            "status":"false",
-            "date":"10/20/2023"
-        },        
+            "ID": "3415",
+            "status": "deny",
+            "date": "10/20/2023"
+        },
         {
             "firstName": "NASA",
             "lastName": "Technologies",
-            "ID": "1111",
-            "status":"false",
-            "date":"10/20/2023"
-        }  
-    ]   
+            "ID": "1226",
+            "status": "approved",
+            "date": "10/20/2023"
+        }
+    ]
 }

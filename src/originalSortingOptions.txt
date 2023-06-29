@@ -1,0 +1,95 @@
+const sort_first_name_btn = document.querySelector(".sort-first-name");
+const sort_last_name_btn = document.querySelector(".sort-last-name");
+const sort_ID_btn = document.querySelector(".sort-ID");
+const sort_date_btn = document.querySelector(".sort-date");
+const sort_status_btn = document.querySelector(".sort-status");
+
+let sorter = false;
+
+function sortingOptions() {
+  const msg = "sortingOptions loaded.";
+  console.log(msg);
+  return msg;
+}
+function sortFirstNameButton(sorter) {
+  console.log("sortFirstNameButton", sorter);
+  const desc = false;
+  let array = sort_array_by(list_items, "firstName", sorter);
+  displayList(array);
+}
+sort_first_name_btn.addEventListener(
+  "click",
+  () => {
+    console.log("addEventListener");
+    sorter = !sorter;
+    console.log("sorter: ", sorter);
+    return sortFirstNameButton(sorter);
+  },
+  false
+);
+
+function sortIdButton(sorter) {
+  console.log("sortIdButton", sorter);
+  const desc = false;
+  let array = sort_array_by(list_items, "ID", sorter);
+  displayList(array);
+}
+sort_ID_btn.addEventListener(
+  "click",
+  () => {
+    console.log("addEventListener");
+    sorter = !sorter;
+    console.log("sorter: ", sorter);
+    return sortIdButton(sorter);
+  },
+  false
+);
+
+function sortDateButton(sorter) {
+  console.log("sortDateButton", sorter);
+  const desc = false;
+  let array = sort_array_by(list_items, "date", sorter);
+  displayList(array);
+}
+
+sort_date_btn.addEventListener(
+  "click",
+  () => {
+    console.log("addEventListener");
+    sorter = !sorter;
+    console.log("sorter: ", sorter);
+    return sortDateButton(sorter);
+  },
+  false
+);
+
+function sortStatusButton(sorter) {
+  console.log("sortStatusButton", sorter);
+  const desc = false;
+  let array = sort_array_by(list_items, "date", sorter);
+  displayList(array);
+}
+
+sort_status_btn.addEventListener(
+  "click",
+  () => {
+    console.log("addEventListener");
+    sorter = !sorter;
+    console.log("sorter: ", sorter);
+    return sortStatusButton(sorter);
+  },
+  false
+);
+
+function sort_array_by(array, sort, desc = false) {
+  console.log("sort_array_by", array, sort, desc);
+  array.sort(function (a, b) {
+    if (a[sort] < b[sort]) return -1;
+    if (a[sort] > b[sort]) return 1;
+    return 0;
+  });
+
+  if (desc) array.reverse();
+  return array;
+}
+export default sortingOptions;

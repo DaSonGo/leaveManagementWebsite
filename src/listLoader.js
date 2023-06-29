@@ -1,15 +1,15 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
-
+import { list } from "./main.js";
 export const list_items = await JSONFileFetcher();
-
-function createAndAppendElement(parentElement, elementType, className, textContent) {
+// export const list = document.querySelector("list");
+export function createAndAppendElement(parentElement, elementType, className, textContent) {
   const element = document.createElement(elementType);
   element.classList.add(className);
   element.innerText = textContent;
   parentElement.appendChild(element);
 }
 function listLoader(array = []) {
-  const list = document.querySelector("list");
+
   list.innerHTML = "";
   console.log("in displayList");
 
