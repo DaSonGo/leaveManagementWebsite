@@ -1,14 +1,3 @@
-// import { chunk } from "lodash";
-import JSONFileFetcher from "./JSONFileFetcher.js";
-
-
-import addForm from "./addForm.js";
-import formPage from "./formPage.js";
-// import displayList from "./displayList.js";
-import { createAndAppendElement } from "./listLoader.js";
-import listLoader from "./listLoader.js";
-//import sortingOptions from "./sortingOptions.js";
-
 export const list = document.querySelector(".list");
 const list_items = await JSONFileFetcher();
 
@@ -29,8 +18,10 @@ function sortOptionsClickHandler(property, buttonElement) {
 }
 function sort_array_by(array, sort, desc = false) {
   console.log("sort_array_by", array, sort, desc);
-  _.sortby(array, function (o) {
-    return o.array;
+  array.sort(function (a, b) {
+    if (a[sort] < b[sort]) return -1;
+    if (a[sort] > b[sort]) return 1;
+    return 0;
   });
 
   if (desc) array.reverse();
@@ -47,20 +38,3 @@ sort_last_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort
 sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("sort-ID", sort_ID_btn));
 sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("sort-date", sort_date_btn));
 sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("sort-status", sort_status_btn));
-
-const abc = list_items;
-const lodashArray = _.chunk(abc, 2);
-console.log('============================', lodashArray);
-
-const sortedArray = _.sortBy(abc, 'ID');
-console.log('sorted Array', sortedArray);
-// const test2 = _.sortBy(users, [function (o) { return o.user; }]);
-
-// console.log('lodashArray', {
-//   abc, lodashArray, test: _.chunk(['a', 'b', 'c', 'd'], 2), test2
-// });
-
-
-
-
-listLoader(list_items);
