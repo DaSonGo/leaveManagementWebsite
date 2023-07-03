@@ -9,22 +9,78 @@
         },
         {
             "firstName": "Apple",
-            "lastName": "Technologies",
+            "lastName": "Corp",
             "ID": "2314",
             "status": "deny",
             "date": "10/20/2023"
         },
         {
             "firstName": "Google",
-            "lastName": "Technologies",
+            "lastName": "Army",
             "ID": "3415",
             "status": "deny",
             "date": "10/20/2023"
         },
         {
-            "firstName": "NASA",
-            "lastName": "Technologies",
-            "ID": "1226",
+            "firstName": "WHO",
+            "lastName": "Lab",
+            "ID": "1776",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Hieu",
+            "lastName": "Lam",
+            "ID": "1245",
+            "status": "approved",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Tolkien",
+            "lastName": "Family",
+            "ID": "7542",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "GOT",
+            "lastName": "Laboratory",
+            "ID": "9124",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Lannister",
+            "lastName": "Gang",
+            "ID": "8871",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Joffrey",
+            "lastName": "Mob",
+            "ID": "5466",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Targaryen",
+            "lastName": "Crib",
+            "ID": "1897",
+            "status": "pending",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Stark",
+            "lastName": "Nation",
+            "ID": "2466",
+            "status": "approved",
+            "date": "10/20/2023"
+        },
+        {
+            "firstName": "Hobbit",
+            "lastName": "Kingdom",
+            "ID": "0912",
             "status": "approved",
             "date": "10/20/2023"
         }

@@ -1,4 +1,4 @@
-// import { chunk } from "lodash";
+
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 
@@ -12,6 +12,30 @@ import listLoader from "./listLoader.js";
 export const list = document.querySelector(".list");
 const list_items = await JSONFileFetcher();
 
+const SORT_OPTIONS = [
+  {
+    sortKey: "sort-first-name",
+    sortBy: "firstName",
+  },
+  {
+    sortKey: "sort-last-name",
+    sortBy: "lastName",
+  },
+  {
+    sortKey: "sort-ID",
+    sortBy: "ID",
+  },
+  {
+    sortKey: "sort-date",
+    sortBy: "date",
+  },
+  {
+    sortKey: "sort-status",
+    sortBy: "status",
+  },
+
+]
+
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
 const sort_last_name_btn = document.querySelector(".sort-last-name");
@@ -22,45 +46,49 @@ const sort_status_btn = document.querySelector(".sort-status");
 let sorter = false;
 
 function sortOptionsClickHandler(property, buttonElement) {
-  console.log(`handleSortButtonClick: ${property}`, sorter);
-  sorter = !sorter;
-  console.log("sorter: ", sorter);
-  sortItems(property, sorter);
+  // console.log(`handleSortButtonClick: ${property}`, buttonElement);
+
+  // if (property == ".sort-first-name") { property = "firstName"; }
+  // if (property == ".sort-last-name") { property = "lastName"; }
+  // if (property == ".sort-ID") { property = "ID"; }
+  // if (property == ".sort-date") { property = "date"; }
+  // if (property == ".sort-status") { property = "status"; }
+  // console.log(property);
+  const sorter = SORT_OPTIONS.find((sort) => {
+    return property === sort.sortKey && sort.sortBy;
+  })
+
+  // sortItems(property);
+  sortItems(sorter.sortBy);
 }
-function sort_array_by(array, sort, desc = false) {
-  console.log("sort_array_by", array, sort, desc);
-  _.sortby(array, function (o) {
-    return o.array;
+function sort_array_by(array, sort) {
+  // console.log("sort_array_by_before", array, sort);
+  const sortByContainer = _.sortBy(array, (obj) => {
+    return obj[sort];
   });
 
-  if (desc) array.reverse();
-  return array;
+  return sortByContainer;
 }
-function sortItems(property, sorter) {
-  console.log("sortItem running");
-  let array = sort_array_by(list_items, property, sorter);
+function sortItems(property) {
+  console.log("sortItem running: ", property);
+  let array = sort_array_by(list_items, property);
   listLoader(array);
 }
 
-sort_first_name_btn.addEventListener('click', () => sortOptionsClickHandler(".sort-first-name", sort_first_name_btn));
+sort_first_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort-first-name", sort_first_name_btn));
 sort_last_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort-last-name", sort_last_name_btn));
 sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("sort-ID", sort_ID_btn));
 sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("sort-date", sort_date_btn));
 sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("sort-status", sort_status_btn));
 
-const abc = list_items;
-const lodashArray = _.chunk(abc, 2);
-console.log('============================', lodashArray);
 
-const sortedArray = _.sortBy(abc, 'ID');
-console.log('sorted Array', sortedArray);
-// const test2 = _.sortBy(users, [function (o) { return o.user; }]);
-
-// console.log('lodashArray', {
-//   abc, lodashArray, test: _.chunk(['a', 'b', 'c', 'd'], 2), test2
-// });
+function sort_array_by_first_name() {
+  const sortByFirstName = _.sortBy(list_items, (obj) => obj.firstName);
+  return sortByFirstName;
+}
 
 
+// listLoader(sort_array_by_first_name());
 
 
 listLoader(list_items);

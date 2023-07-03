@@ -2,7 +2,7 @@
 async function JSONFileFetcher() {
   const result = await fetch("./user.json");
   const data = await result.json();
-  console.log("=================== Async", data.requests);
+  console.log('data fetched');
   return data.requests;
 }
 
