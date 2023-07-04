@@ -1,46 +1,54 @@
-import listLoader from "./listLoader";
-import { list } from ".main";
-const sort_first_name_btn = document.querySelector(".sort-first-name");
-const sort_last_name_btn = document.querySelector(".sort-last-name");
-const sort_ID_btn = document.querySelector(".sort-ID");
-const sort_date_btn = document.querySelector(".sort-date");
-const sort_status_btn = document.querySelector(".sort-status");
+import listLoader, { createAndAppendElement } from "./listLoader.js";
+import { list_items, list } from "./index.js";
 
-let sorter = false;
+const sortingOptions = [
+  {
+    sortKey: "sort-first-name",
+    sortBy: "firstName",
+  },
+  {
+    sortKey: "sort-last-name",
+    sortBy: "lastName",
+  },
+  {
+    sortKey: "sort-ID",
+    sortBy: "ID",
+  },
+  {
+    sortKey: "sort-date",
+    sortBy: "date",
+  },
+  {
+    sortKey: "sort-status",
+    sortBy: "status",
+  },
+]
 
-function sortingOptions() {
-  const msg = "sortingOptions loaded.";
-  console.log(msg);
-  return msg;
+
+export function sortOptionsClickHandler(property, buttonElement) {
+  const sorter = sortingOptions.find((sort) => {
+    return property === sort.sortKey && sort.sortBy;
+  })
+  sortItems(sorter.sortBy);
 }
+function sort_array_by(array, sort) {
+  const sortByContainer = _.sortBy(array, (obj) => {
+    return obj[sort];
+  });
 
-function sortOptionsClickHandler(property, buttonElement) {
-  console.log(`handleSortButtonClick: ${property}`, sorter);
-  sorter = !sorter;
-  console.log("sorter: ", sorter);
-  sortItems(property, sorter);
+  return sortByContainer;
 }
-
-function sortItems(property, sorter) {
-  let array = sort_array_by(list_items, property, sorter);
+export function sortItems(property) {
+  console.log("sortItem running: ", property);
+  let array = sort_array_by(list_items, property);
   listLoader(array);
 }
 
-sort_first_name_btn.addEventListener('click', () => sortOptionsClickHandler("firstName", sort_first_name_btn));
-sort_last_name_btn.addEventListener('click', () => sortOptionsClickHandler("lastName", sort_last_name_btn));
-sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("ID", sort_ID_btn));
-sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("date", sort_date_btn));
-sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("firstName", sort_status_btn));
+// sort_first_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort-first-name", sort_first_name_btn));
+// sort_last_name_btn.addEventListener('click', () => sortOptionsClickHandler("sort-last-name", sort_last_name_btn));
+// sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("sort-ID", sort_ID_btn));
+// sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("sort-date", sort_date_btn));
+// sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("sort-status", sort_status_btn));
 
-function sort_array_by(array, sort, desc = false) {
-  console.log("sort_array_by", array, sort, desc);
-  array.sort(function (a, b) {
-    if (a[sort] < b[sort]) return -1;
-    if (a[sort] > b[sort]) return 1;
-    return 0;
-  });
 
-  if (desc) array.reverse();
-  return array;
-}
 export default sortingOptions;
