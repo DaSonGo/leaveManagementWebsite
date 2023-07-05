@@ -2,40 +2,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box';
+
 }
 
-body{
+body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #f3f3f3
 }
 
-header{
-    width:100vw;
+header {
+    width: 100vw;
     height: 60px;
     background-color: #171717;
 }
-header h1{
-    color: #f3f3f3; 
-    
+
+header h1 {
+    color: #f3f3f3;
+
     font-size: 28px;
     font-weight: 900;
     line-height: 60px;
 
-    text-align:center;
-    text-transform:uppercase;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-main .sort-options{
+main .sort-options {
     display: flex;
     justify-content: space-between;
-    
+
     width: 100%;
     max-width: 600px;
 
     margin: 30px auto;
 }
 
-main .sort-options button{
+main .sort-options button {
     flex: 1 1 33%;
     appearance: none;
 
@@ -47,31 +49,31 @@ main .sort-options button{
 
     padding: 15px 0px;
     margin: 0px 8px;
-    
+
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
-    
-    cursor: pointer; 
+
+    cursor: pointer;
 }
 
 main .list-headers {
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    
+
     width: 100%;
     max-width: 600px;
 
     margin: 30px auto 0px;
     padding: 0px 15px;
-    
+
     font-weight: 700;
     text-transform: uppercase;
 
 }
 
-main.list{
-    display:block;
+main.list {
+    display: block;
 
     width: 100%;
     max-width: 480px;
@@ -83,12 +85,46 @@ main .list .list-item {
     display: flex;
     justify-content: space-between;
 
-    width: 100%; 
+    width: 100%;
     max-width: 480px;
 
     margin: 15px auto 0px;
     padding: 15px;
-    
+
     border: 1px solid #171717;
     border-radius: 8px;
+}
+
+main .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

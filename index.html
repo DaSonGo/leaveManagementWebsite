@@ -31,6 +31,24 @@
         </section>
         <section class="list"></section>
         <div id="list"></div>
+        <section class="form-modal">
+            <button id="openModal">openModal</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Modal Form</h2>
+                    <form id="myForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" required>
+                        <label for="id">ID:</label>
+                        <input type="text" id="ID" required>
+                        <label for="description">Description:</label>
+                        <textarea id="description" rows="4" required></textarea>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"

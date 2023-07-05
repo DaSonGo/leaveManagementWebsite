@@ -1,8 +1,8 @@
 
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
-import addForm from "./addForm.js";
-import formPage from "./formPage.js";
+// import addForm from "./addForm.js";
+// import formPage from "./formPage.js";
 
 //display list imports
 import listLoader, { createAndAppendElement } from "./listLoader.js";
@@ -26,5 +26,41 @@ sort_ID_btn.addEventListener('click', () => sortOptionsClickHandler("sort-ID", s
 sort_date_btn.addEventListener('click', () => sortOptionsClickHandler("sort-date", sort_date_btn));
 sort_status_btn.addEventListener('click', () => sortOptionsClickHandler("sort-status", sort_status_btn));
 
+
+const modal = document.getElementById('myModal');
+const openModalBtn = document.getElementById('openModal');
+const closeBtn = document.getElementsByClassName('close')[0];
+
+function openModal() {
+    modal.style.display = 'block';
+}
+function closeModal() {
+    modal.style.display = 'nope';
+}
+function handleSubmit(event) {
+    event.preventDefault();
+
+
+    const name = document.getElementById('name').value;
+    const id = document.getElementById('id').value;
+    const description = document.getElementById('description').value;
+
+    console.log('Name:', name);
+    console.log('ID:', id);
+    console.log('Description:', description);
+
+    closeModal();
+}
+
+openModalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+const form = document.getElementById('myForm');
+form.addEventListener('submit', handleSubmit);
 
 listLoader(list_items);
