@@ -35,19 +35,37 @@ function openModal() {
     modal.style.display = 'block';
 }
 function closeModal() {
-    modal.style.display = 'nope';
+    // const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
 }
 function handleSubmit(event) {
     event.preventDefault();
 
+    console.log('this is event: ', event);
 
-    const name = document.getElementById('name').value;
-    const id = document.getElementById('id').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const id = document.getElementById('ID').value;
     const description = document.getElementById('description').value;
 
-    console.log('Name:', name);
-    console.log('ID:', id);
-    console.log('Description:', description);
+    // console.log('First Name:', firstName);
+    // console.log('Last Name: ', lastName);
+    // console.log('ID:', id);
+    // console.log('Description:', description);
+
+    const inputData = [
+        {
+            "firstName": firstName,
+            "lastName": lastName,
+            "ID": id,
+            "description": description
+        }
+    ]
+    console.log(list_items);
+    console.log(inputData);
+
+    const convertedData = JSON.stringify(inputData);
+
 
     closeModal();
 }
