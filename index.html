@@ -16,11 +16,14 @@
     </header>
     <main>
         <section class="sort-options">
-            <button class="sort-first-name">First name</button>
-            <button class="sort-last-name">Last name</button>
-            <button class="sort-ID">Request ID</button>
-            <button class="sort-date">date</button>
-            <button class="sort-status">Request Status</button>
+            <select id="sortDropDown">
+                <option value="" disabled selected>Select Sort Option</option>
+                <option value="sort-first-name">First name</option>
+                <option value="sort-last-name">Last name</option>
+                <option value="sort-ID">Request ID</option>
+                <option value="sort-date">Date</option>
+                <option value="sort-status">Request Status</option>
+            </select>
         </section>
         <section class="list-headers">
             <div class="header-title">first name</div>

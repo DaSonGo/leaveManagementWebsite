@@ -27,7 +27,7 @@ header h1 {
     text-transform: uppercase;
 }
 
-main .sort-options {
+/* main .sort-options {
     display: flex;
     justify-content: space-between;
 
@@ -55,6 +55,42 @@ main .sort-options button {
     text-transform: uppercase;
 
     cursor: pointer;
+} */
+
+/* Styles for the select dropdown */
+main .sort-options #sortDropDown {
+    flex: 1 1 33%;
+    appearance: none;
+    background-color: #FFCE00;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    padding: 15px 0px;
+    margin: 0px 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Styles for the select dropdown options */
+main .sort-options #sortDropDown option {
+    background-color: #FFCE00;
+    font-weight: 700;
+}
+
+/* Hide the default dropdown arrow */
+main .sort-options #sortDropDown::-ms-expand {
+    display: none;
+}
+
+main .sort-options #sortDropDown::before {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
 }
 
 main .list-headers {

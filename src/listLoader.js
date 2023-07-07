@@ -1,5 +1,6 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 import { list } from "./index.js";
+
 export const list_items = await JSONFileFetcher();
 // export const list = document.querySelector("list");
 export function createAndAppendElement(parentElement, elementType, className, textContent) {
