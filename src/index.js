@@ -47,7 +47,6 @@ sortDropDown.addEventListener('change', function () {
             sortOptionsClickHandler("sort-status", sort_status_btn);
             break;
         default:
-
             break;
     }
 });
@@ -67,38 +66,30 @@ function closeModal() {
 function handleSubmit(event) {
     event.preventDefault();
 
-    const existingData = fs.readFileSync(list_items);
-    const parsedData = JSON.parse(existingData);
+    const existingData = list_items;
 
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const id = document.getElementById('ID').value;
     const description = document.getElementById('description').value;
 
-    // console.log('First Name:', firstName);
-    // console.log('Last Name: ', lastName);
-    // console.log('ID:', id);
-    // console.log('Description:', description);
+    const inputData =
+    {
+        "firstName": firstName,
+        "lastName": lastName,
+        "ID": id,
+        "description": description
+    }
 
-    const inputData = [
-        {
-            "firstName": firstName,
-            "lastName": lastName,
-            "ID": id,
-            "description": description
-        }
-    ]
     console.log(tempItems);
     console.log(inputData);
 
-    const convertedData = JSON.stringify(inputData);
-    parsedData.push(inputData);
+    existingData.push(inputData);
 
-    const updatedData = JSON.stringify(parsedData)
+    const updatedData = JSON.stringify(existingData);
+    const parsedData = JSON.parse(updatedData);
     console.log('this is updatedData', updatedData);
-    fs.writeFileSync(tempItems, updatedData, 'utf8');
-
-
+    console.log('this is parsedData', parsedData);
     closeModal();
 }
 
@@ -114,5 +105,32 @@ window.addEventListener('click', function (event) {
 
 const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
+
+//ID Randomizer for future use when create a new request form.
+function IDRandomizer(array = []) {
+    const generatedID = Math.floor(Math.random() * 10000);
+    array = list_items;
+    for (let i = 0; i < array.length; i++) {
+        let item = array[i];
+        let itemID = item.ID;
+        if (generatedID === itemID) {
+            generatedID = Math.floor(Math.random() * 10000);
+        }
+        return generatedID;
+    }
+}
+
+
+// function IDPrinter(array = []) {
+//     array = list_items;
+//     for (let i = 0; i < array.length; i++) {
+//         let item = array[i];
+//         let itemID = item.ID;
+//         console.log(itemID);
+//     }
+// }
+// IDPrinter();
+
+console.log('this is ID RANDOMIZER: ', IDRandomizer());
 
 listLoader(list_items);
