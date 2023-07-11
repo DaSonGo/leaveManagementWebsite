@@ -27,36 +27,14 @@ const sortingOptions = [
 
 export function sortOptionsClickHandler(property, buttonElement) {
   const sorter = sortingOptions.find((sort) => {
-    console.log('this is sorting property', property);
     return property === sort.sortKey && sort.sortBy;
   })
   sortItems(sorter.sortBy);
 }
 function sort_array_by(array, sort) {
   const sortByContainer = _.sortBy(array, (obj) => {
-    if (sort === 'status') {
-      const statusCheck = obj.status;
-      console.log('this is StatusCheck', statusCheck);
-
-      if (statusCheck === 'pending') {
-        return -1;
-      } else if (statusCheck === 'deny') {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-
-    if (sort === 'date') {
-      const dateCheck = obj.date;
-      console.log('this is dateCheck', dateCheck);
-      const sortByContainer = -new Date(dateCheck);
-      return sortByContainer;
-    }
-
     return obj[sort];
   });
-
 
   return sortByContainer;
 }
