@@ -14,46 +14,50 @@
     <header>
         <h1>Employee Leave Management System</h1>
     </header>
-    <main>
-        <section class="sort-options">
-            <select id="sortDropDown">
-                <option value="" disabled selected>Select Sort Option</option>
-                <option value="sort-first-name">First name</option>
-                <option value="sort-last-name">Last name</option>
-                <option value="sort-ID">Request ID</option>
-                <option value="sort-date">Date</option>
-                <option value="sort-status">Request Status</option>
-            </select>
-        </section>
-        <section class="list-headers">
-            <div class="header-title">first name</div>
-            <div class="header-title">last name</div>
-            <div class="header-ID">ID</div>
-            <div class="header-date">date</div>
-            <div class="header-status">request status</div>
-        </section>
-        <section class="list"></section>
-        <div id="list"></div>
-        <section class="form-modal">
-            <button id="openModal">openModal</button>
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Modal Form</h2>
-                    <form id="myForm">
-                        <label for="firstName">First Name:</label>
-                        <input type="text" id="firstName" required>
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" id="lastName" required>
-                        <label for="id">ID:</label>
-                        <input type="text" id="ID" required>
-                        <label for="description">Description:</label>
-                        <textarea id="description" rows="4" required></textarea>
-                        <input type="submit" value="Submit">
-                    </form>
-                </div>
+    <section class="sort-options">
+        <select id="sortDropDown">
+            <option value="" disabled selected>Select Sort Option</option>
+            <option value="sort-first-name">First name</option>
+            <option value="sort-last-name">Last name</option>
+            <option value="sort-ID">Request ID</option>
+            <option value="sort-date">Date</option>
+            <option value="sort-status">Request Status</option>
+        </select>
+    </section>
+    <section class="list-headers">
+        <div class="header-title">first name</div>
+        <div class="header-title">last name</div>
+        <div class="header-ID">ID</div>
+        <div class="header-date">date</div>
+        <div class="header-status">request status</div>
+    </section>
+    <section class="list"></section>
+    <div id="list"></div>
+    <section class="form-modal">
+        <button id="openModal">openModal</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Modal Form</h2>
+                <form id="myForm">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" required>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" required>
+                    <label for="id">ID:</label>
+                    <input type="text" id="ID" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" rows="4" required></textarea>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
+    <nav class="pagination-container">
+        <div id="pagination-number">
+
+        </div>
+    </nav>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"

@@ -51,7 +51,8 @@ sortDropDown.addEventListener('change', function () {
     }
 });
 
-
+//-------------------------------------------------------------
+//Modal Created
 const modal = document.getElementById('myModal');
 const openModalBtn = document.getElementById('openModal');
 const closeBtn = document.getElementsByClassName('close')[0];
@@ -105,6 +106,8 @@ window.addEventListener('click', function (event) {
 
 const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
+//-----------------------------------------------------------
+
 
 //ID Randomizer for future use when create a new request form.
 function IDRandomizer(array = []) {
@@ -121,16 +124,5 @@ function IDRandomizer(array = []) {
 }
 
 
-// function IDPrinter(array = []) {
-//     array = list_items;
-//     for (let i = 0; i < array.length; i++) {
-//         let item = array[i];
-//         let itemID = item.ID;
-//         console.log(itemID);
-//     }
-// }
-// IDPrinter();
-
-console.log('this is ID RANDOMIZER: ', IDRandomizer());
 
 listLoader(list_items);
