@@ -82,7 +82,6 @@ function handleSubmit(event) {
         "description": description
     }
 
-    console.log(tempItems);
     console.log(inputData);
 
     existingData.push(inputData);
@@ -93,8 +92,6 @@ function handleSubmit(event) {
     console.log('this is parsedData', parsedData);
     closeModal();
 }
-
-
 
 openModalBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
@@ -109,20 +106,37 @@ form.addEventListener('submit', handleSubmit);
 //-----------------------------------------------------------
 
 
-//ID Randomizer for future use when create a new request form.
-function IDRandomizer(array = []) {
-    const generatedID = Math.floor(Math.random() * 10000);
-    array = list_items;
-    for (let i = 0; i < array.length; i++) {
-        let item = array[i];
-        let itemID = item.ID;
-        if (generatedID === itemID) {
-            generatedID = Math.floor(Math.random() * 10000);
-        }
-        return generatedID;
-    }
+
+
+let currentPage = 1;
+const itemsPerPage = 4;
+function updateList(currentPage) {
+    listLoader(list_items, currentPage, itemsPerPage);
+    currentPageElement.innerText = currentPage;
 }
 
+const paginationContainer = document.querySelector(".pagination-container");
+const prevButton = document.getElementById("prev-button");
+const nextButton = document.getElementById("next-button");
+const currentPageElement = paginationContainer.querySelector("pagination-numbers");
 
+console.log('website is fully Loaded');
+prevButton.addEventListener("click", () => {
+    console.log("previous Button", currentPage);
+    if (currentPage > 1) {
+        currentPage--;
+        console.log("this is previousButton ", currentPage);
+        updateList(currentPage);
+    }
+});
 
-listLoader(list_items);
+nextButton.addEventListener("click", () => {
+    const totalPages = Math.ceil(list_items.length / itemsPerPage);
+    console.log('next button clicked');
+    if (currentPage < totalPages) {
+        currentPage++;
+        updateList(currentPage);
+    }
+});
+
+updateList();

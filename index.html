@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="main.css" />
 </head>
 
-<body>
+<main>
     <header>
         <h1>Employee Leave Management System</h1>
     </header>
@@ -31,8 +31,10 @@
         <div class="header-date">date</div>
         <div class="header-status">request status</div>
     </section>
-    <section class="list"></section>
-    <div id="list"></div>
+    <!-- <section class="list"></section>
+    <div id="list"></div> -->
+
+
     <section class="form-modal">
         <button id="openModal">openModal</button>
         <div id="myModal" class="modal">
@@ -54,17 +56,28 @@
         </div>
     </section>
     <nav class="pagination-container">
-        <div id="pagination-number">
 
-        </div>
+        <section class="list"></section>
+        <div id="list"></div>
+
+        <button class="pagination-button" id="prev-button" title="Previous page" aria-label="Previous page">
+            &lt;
+        </button>
+
+        <div id="pagination-numbers"> </div>
+
+
+        <button class="pagination-button" id="next-button" title="Next page" aria-label="Next page">
+            &gt;
+        </button>
     </nav>
-    </main>
+</main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
-        integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+    integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="src/index.js" type="module"></script>
+<script src="src/index.js" type="module"></script>
 
 
 </body>

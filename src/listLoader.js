@@ -9,13 +9,18 @@ export function createAndAppendElement(parentElement, elementType, className, te
   element.innerText = textContent;
   parentElement.appendChild(element);
 }
-function listLoader(array = []) {
+
+function listLoader(array = [], currentPage = 1, itemsPerPage = 4) {
 
   list.innerHTML = "";
   console.log("in displayList");
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedItems = array.slice(startIndex, endIndex);
+
   for (let i = 0; i < array.length; i++) {
-    let item = array[i];
+    let item = paginatedItems[i];
 
     let item_element = document.createElement("div");
     item_element.classList.add("list-item");
