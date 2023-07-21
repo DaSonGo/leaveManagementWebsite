@@ -192,38 +192,37 @@ main .list .list-item {
 }*/
 
 .pagination-container {
-    /* display: flex;
+    display: flex;
     align-items: center;
-    position: absolute;
-    bottom: 0;
-    justify-content: center; */
-
-    display: block;
-
+    justify-content: center;
     width: 100%;
     max-width: 480px;
-
     margin: 0 auto;
 }
 
-.pagination-number,
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-numbers,
 .pagination-button {
     font-size: 1.1rem;
     background-color: transparent;
     border: none;
-    margin: 0.25rem 0.25rem;
+    margin: 0.25rem;
     cursor: pointer;
     height: 2.5rem;
     width: 2.5rem;
-    border-radius: .2rem;
+    border-radius: 0.2rem;
 }
 
-.pagination-number:hover,
+.pagination-numbers:hover,
 .pagination-button:not(.disabled):hover {
     background: #fff;
 }
 
-.pagination-number.active {
+.pagination-numbers.active {
     color: #ffffff;
     background: #0085b6;
 }

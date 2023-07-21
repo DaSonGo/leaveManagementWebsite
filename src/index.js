@@ -105,8 +105,10 @@ const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
 //-----------------------------------------------------------
 
-
-
+const paginationContainer = document.querySelector(".pagination-container");
+const prevButton = document.getElementById("prev-button");
+const nextButton = document.getElementById("next-button");
+const currentPageElement = paginationContainer.querySelector("pagination-numbers");
 
 let currentPage = 1;
 const itemsPerPage = 4;
@@ -115,10 +117,26 @@ function updateList(currentPage) {
     currentPageElement.innerText = currentPage;
 }
 
-const paginationContainer = document.querySelector(".pagination-container");
-const prevButton = document.getElementById("prev-button");
-const nextButton = document.getElementById("next-button");
-const currentPageElement = paginationContainer.querySelector("pagination-numbers");
+function createPaginationNumbers(totalPages) {
+    // const paginationNumbersDiv = document.createElement('div');
+    // paginationNumbersDiv.classList.add("pagination-numbers");
+    const paginationNumbersContainer = document.querySelector(".pagination-numbers");
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageNumberButton = document.createElement("button");
+        pageNumberButton.innerText = i;
+        pageNumberButton.addEventListener("click", () => {
+            currentPage = i;
+            updateList(currentPage);
+        });
+        paginationNumbersContainer.appendChild(pageNumberButton);
+    }
+    return paginationNumbersContainer;
+}
+
+const totalPages = Math.ceil(list_items.length / itemsPerPage);
+paginationContainer.appendChild(createPaginationNumbers(totalPages));
+
 
 console.log('website is fully Loaded');
 prevButton.addEventListener("click", () => {
