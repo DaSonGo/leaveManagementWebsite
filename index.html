@@ -31,12 +31,16 @@
         <div class="header-date">date</div>
         <div class="header-status">request status</div>
     </section>
+    <input type="text" id="searchInput" placeholder="Enter your name/ID/Email: ">
+    <ul id="resultList"></ul>
+
+
     <section class="list"></section>
     <div id="list"></div>
 
 
     <section class="form-modal">
-        <button id="openModal">openModal</button>
+        <button id="openModal">Add Form</button>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -54,6 +58,10 @@
                 </form>
             </div>
         </div>
+        <button id="editModal">Edit Form</button>
+        <div id='modModal' class="modal">
+
+        </div>
     </section>
     <nav class="pagination-container">
         <!-- 
@@ -65,10 +73,10 @@
         <button class="pagination-button" id="prev-button" title="Previous page" aria-label="Previous page">
             &lt;
         </button>
-
+        <div class="pagination-numbers"></div>
 
         <!-- <button class="pagination-button" id="pagination-numbers"></button> -->
-        <div class="pagination-numbers"></div>
+
 
         <button class="pagination-button" id="next-button" title="Next page" aria-label="Next page">
             &gt;

@@ -104,11 +104,11 @@ window.addEventListener('click', function (event) {
 const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
 //-----------------------------------------------------------
-
+//Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");
-const currentPageElement = paginationContainer.querySelector("pagination-numbers");
+const currentPageElement = paginationContainer.querySelector(".pagination-numbers");
 
 let currentPage = 1;
 const itemsPerPage = 4;
@@ -129,13 +129,15 @@ function createPaginationNumbers(totalPages) {
             currentPage = i;
             updateList(currentPage);
         });
+
         paginationNumbersContainer.appendChild(pageNumberButton);
     }
-    return paginationNumbersContainer;
+    // paginationNumbersContainer.appendChild(list);
+    return;
 }
 
 const totalPages = Math.ceil(list_items.length / itemsPerPage);
-paginationContainer.appendChild(createPaginationNumbers(totalPages));
+createPaginationNumbers(totalPages);
 
 
 console.log('website is fully Loaded');
@@ -156,5 +158,19 @@ nextButton.addEventListener("click", () => {
         updateList(currentPage);
     }
 });
+//-----------------------------------------------------------
+
+//Search-bar Creation
+
+const searchInput = document.getElementById('searchInput')
+console.log('this is search input', searchInput);
+
+function search() {
+    const searchTerm = searchInput.value.toLowerCase()
+    const filteredResults = list_items.filter(item => item.toLowerCase().includes(searchTerm));
+    updateList.displayResults(filteredResults);
+}
+
+searchInput.addEventListener("input", search());
 
 updateList();
