@@ -52,7 +52,7 @@ sortDropDown.addEventListener('change', function () {
 });
 
 //-------------------------------------------------------------
-//Modal Created
+//Modal Created && Add Form Button
 const modal = document.getElementById('myModal');
 const openModalBtn = document.getElementById('openModal');
 const closeBtn = document.getElementsByClassName('close')[0];
@@ -136,11 +136,11 @@ function createPaginationNumbers(totalPages) {
     return;
 }
 
-const totalPages = Math.ceil(list_items.length / itemsPerPage);
+const totalPages = Math.ceil(tempItems.length / itemsPerPage);
 createPaginationNumbers(totalPages);
 
 
-console.log('website is fully Loaded');
+
 prevButton.addEventListener("click", () => {
     console.log("previous Button", currentPage);
     if (currentPage > 1) {
@@ -158,6 +158,8 @@ nextButton.addEventListener("click", () => {
         updateList(currentPage);
     }
 });
+
+
 //-----------------------------------------------------------
 
 //Search-bar Creation
@@ -167,10 +169,39 @@ console.log('this is search input', searchInput);
 
 function search() {
     const searchTerm = searchInput.value.toLowerCase()
-    const filteredResults = list_items.filter(item => item.toLowerCase().includes(searchTerm));
-    updateList.displayResults(filteredResults);
+    const filteredResults = list_items.filter(item =>
+        item.firstName.toLowerCase().includes(searchTerm) ||
+        item.lastName.toLowerCase().includes(searchTerm) ||
+        item.ID.toLowerCase().includes(searchTerm) ||
+        item.date.toLowerCase().includes(searchTerm) ||
+        item.status.toLowerCase().includes(searchTerm)
+    );
+
+    listLoader(filteredResults);
 }
 
-searchInput.addEventListener("input", search());
+
+
+function debounce(func, delay) {
+    let timeoutID;
+    return function () {
+        const context = this;
+        const args = arguments
+        clearTimeout(timeoutID);
+        timeoutID = setTimeout(() => search.apply(context, args), delay);
+    };
+}
+
+const debouncedSearch = debounce(search, 300);
+
+searchInput.addEventListener("input", debouncedSearch);
+
+
+//-----------------------------------------------------------
+//Remove Button
+
+function remove_btn() {
+
+}
 
 updateList();

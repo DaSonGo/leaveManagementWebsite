@@ -18,10 +18,10 @@ function listLoader(array = [], currentPage = 1, itemsPerPage = 4) {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedItems = array.slice(startIndex, endIndex);
-
-  for (let i = 0; i < array.length; i++) {
+  console.log(array);
+  for (let i = 0; i < array.length; i++) { //array.length causes the pagination to properly paginate. But causes potential bug/memory leak
     let item = paginatedItems[i];
-
+    console.log("this is Item", i, item);
     let item_element = document.createElement("div");
     item_element.classList.add("list-item");
 
