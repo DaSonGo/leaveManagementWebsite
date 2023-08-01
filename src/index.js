@@ -9,12 +9,10 @@ import listLoader, { createAndAppendElement } from "./listLoader.js";
 
 //import sortingOptions from "./sortingOptions.js";
 import sortingOptions, { sortItems, sortOptionsClickHandler } from "./sortingOptions.js";
-// import { parse } from "path";
+
 //----------------------
 export const list = document.querySelector(".list");
 export const list_items = await JSONFileFetcher();
-const tempItems = list_items;
-
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
 const sort_last_name_btn = document.querySelector(".sort-last-name");
@@ -53,10 +51,18 @@ sortDropDown.addEventListener('change', function () {
 
 //-------------------------------------------------------------
 //Modal Created && Add Form Button
-const modal = document.getElementById('myModal');
-const openModalBtn = document.getElementById('openModal');
-const closeBtn = document.getElementsByClassName('close')[0];
+console.log("Before modal creation");
+// document.addEventListener('DOMContentLoaded', function () {
 
+const modal = document.getElementById('myModal');
+const datePickerInput = document.getElementById('date')
+
+
+function flatPickrInit() {
+    flatpickr(datePickerInput, {
+        dateFormat: "m-d-y"
+    });
+}
 function openModal() {
     modal.style.display = 'block';
 }
@@ -73,13 +79,14 @@ function handleSubmit(event) {
     const lastName = document.getElementById('lastName').value;
     const id = document.getElementById('ID').value;
     const description = document.getElementById('description').value;
-
+    const date = datePickerInput.value;
     const inputData =
     {
         "firstName": firstName,
         "lastName": lastName,
         "ID": id,
-        "description": description
+        "description": description,
+        "date": date,
     }
 
     console.log(inputData);
@@ -93,6 +100,10 @@ function handleSubmit(event) {
     closeModal();
 }
 
+flatPickrInit();
+const openModalBtn = document.getElementById('openModal');
+const closeBtn = document.getElementsByClassName('close')[0];
+
 openModalBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', function (event) {
@@ -103,6 +114,9 @@ window.addEventListener('click', function (event) {
 
 const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
+// });
+
+console.log("this is after modal");
 //-----------------------------------------------------------
 //Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
@@ -136,7 +150,7 @@ function createPaginationNumbers(totalPages) {
     return;
 }
 
-const totalPages = Math.ceil(tempItems.length / itemsPerPage);
+const totalPages = Math.ceil(list_items.length / itemsPerPage);
 createPaginationNumbers(totalPages);
 
 
@@ -200,8 +214,14 @@ searchInput.addEventListener("input", debouncedSearch);
 //-----------------------------------------------------------
 //Remove Button
 
-function remove_btn() {
+function remove_btn(index) {
+    let modifiableData = list_items;
+    console.log('this is modifableData', modifiableData);
+    if (Array.isArray(modifiableData) && index >= 0 && index < modifiableData.length) {
+        modifiableData.splice(index, 1);
 
+        updateList(modifiableData);
+    }
 }
-
+remove_btn();
 updateList();

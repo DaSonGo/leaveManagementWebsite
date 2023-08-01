@@ -52,6 +52,8 @@
                     <input type="text" id="lastName" required>
                     <label for="id">ID:</label>
                     <input type="text" id="ID" required>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" class="datePicker" required>
                     <label for="description">Description:</label>
                     <textarea id="description" rows="4" required></textarea>
                     <input type="submit" value="Submit">
@@ -91,7 +93,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="src/index.js" type="module"></script>
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </body>
 
