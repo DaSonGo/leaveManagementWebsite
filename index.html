@@ -50,10 +50,19 @@
                     <input type="text" id="firstName" required>
                     <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" required>
-                    <label for="id">ID:</label>
-                    <input type="text" id="ID" required>
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" class="datePicker" required>
+                    <!-- <label for="id">ID:</label>
+                    <input type="text" id="ID" required> -->
+                    <label for="leaveDropDown">Reason:</label>
+                    <select id="leaveDropDown">
+                        <option value="" disabled selected></option>
+                        <option value="WFH">WFH</option>
+                        <option value="annual-leave">Annual Leave</option>
+                        <option value="sick-leave">Sick Leave</option>
+                    </select>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" class="datePicker" required>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" class="datePicker" required>
                     <label for="description">Description:</label>
                     <textarea id="description" rows="4" required></textarea>
                     <input type="submit" value="Submit">

@@ -52,16 +52,19 @@ sortDropDown.addEventListener('change', function () {
 //-------------------------------------------------------------
 //Modal Created && Add Form Button
 console.log("Before modal creation");
-// document.addEventListener('DOMContentLoaded', function () {
 
 const modal = document.getElementById('myModal');
-const datePickerInput = document.getElementById('date')
-
+const startDatePickerInput = document.getElementById('startDate');
+const endDatePickerInput = document.getElementById('endDate');
 
 function flatPickrInit() {
-    flatpickr(datePickerInput, {
-        dateFormat: "m-d-y"
+    flatpickr(startDatePickerInput, {
+        dateFormat: "m/d/y"
     });
+
+    flatpickr(endDatePickerInput, {
+        dateFormat: "m/d/y"
+    })
 }
 function openModal() {
     modal.style.display = 'block';
@@ -77,16 +80,19 @@ function handleSubmit(event) {
 
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
-    const id = document.getElementById('ID').value;
+    const leaveDropDown = document.getElementById('leaveDropDown').value;
     const description = document.getElementById('description').value;
-    const date = datePickerInput.value;
+    const startDate = startDatePickerInput.value;
+    const endDate = endDatePickerInput.value;
+
     const inputData =
     {
         "firstName": firstName,
         "lastName": lastName,
-        "ID": id,
+        "leaveDropDown": leaveDropDown,
         "description": description,
-        "date": date,
+        "startDate": startDate,
+        "endDate": endDate
     }
 
     console.log(inputData);
@@ -114,7 +120,7 @@ window.addEventListener('click', function (event) {
 
 const form = document.getElementById('myForm');
 form.addEventListener('submit', handleSubmit);
-// });
+
 
 console.log("this is after modal");
 //-----------------------------------------------------------
