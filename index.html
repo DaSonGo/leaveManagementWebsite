@@ -20,16 +20,17 @@
             <option value="sort-first-name">First name</option>
             <option value="sort-last-name">Last name</option>
             <option value="sort-ID">Request ID</option>
-            <option value="sort-date">Date</option>
+            <option value="sort-start-date">Date</option>
             <option value="sort-status">Request Status</option>
         </select>
     </section>
     <section class="list-headers">
-        <div class="header-title">first name</div>
-        <div class="header-title">last name</div>
-        <div class="header-ID">ID</div>
-        <div class="header-date">date</div>
+        <div class="header-first-name">first name</div>
+        <div class="header-last-name">last name</div>
+        <div class="header-start-date">start date</div>
+        <div class="header-end-date">end date</div>
         <div class="header-status">request status</div>
+        <div class="header-reason">reason</div>
     </section>
     <input type="text" id="searchInput" placeholder="Enter your name/ID/Email: ">
     <ul id="resultList"></ul>
@@ -76,19 +77,11 @@
 
     </section>
     <nav class="pagination-container">
-        <!-- 
-        <section class="list"></section>
-        <div id="list"></div> -->
-        <!-- <div> -->
-
 
         <button class="pagination-button" id="prev-button" title="Previous page" aria-label="Previous page">
             &lt;
         </button>
         <div class="pagination-numbers"></div>
-
-        <!-- <button class="pagination-button" id="pagination-numbers"></button> -->
-
 
         <button class="pagination-button" id="next-button" title="Next page" aria-label="Next page">
             &gt;

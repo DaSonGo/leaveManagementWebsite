@@ -98,7 +98,7 @@ main .list-headers {
     justify-content: space-between;
 
     width: 100%;
-    max-width: 600px;
+    max-width: 750px;
 
     margin: 30px auto 0px;
     padding: 0px 15px;
@@ -111,7 +111,7 @@ main .list {
     display: block;
 
     width: 100%;
-    max-width: 480px;
+    max-width: 700px;
 
     margin: 0 auto;
 }
@@ -121,7 +121,7 @@ main .list .list-item {
     justify-content: space-between;
 
     width: 100%;
-    max-width: 480px;
+    max-width: 700px;
 
     margin: 15px auto 0px;
     padding: 15px;

@@ -131,7 +131,7 @@ const nextButton = document.getElementById("next-button");
 const currentPageElement = paginationContainer.querySelector(".pagination-numbers");
 
 let currentPage = 1;
-const itemsPerPage = 4;
+const itemsPerPage = 6;
 function updateList(currentPage) {
     listLoader(list_items, currentPage, itemsPerPage);
     currentPageElement.innerText = currentPage;

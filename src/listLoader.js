@@ -10,7 +10,7 @@ export function createAndAppendElement(parentElement, elementType, className, te
   parentElement.appendChild(element);
 }
 
-function listLoader(array = [], currentPage = 1, itemsPerPage = 4) {
+function listLoader(array = [], currentPage = 1, itemsPerPage = 6) {
 
   list.innerHTML = "";
   console.log("in displayList");
@@ -25,9 +25,11 @@ function listLoader(array = [], currentPage = 1, itemsPerPage = 4) {
 
     createAndAppendElement(item_element, "div", "item-firstName", item.firstName);
     createAndAppendElement(item_element, "div", "item-lastName", item.lastName);
-    createAndAppendElement(item_element, "div", "item-ID", item.ID);
-    createAndAppendElement(item_element, "div", "item-date", item.date);
+    createAndAppendElement(item_element, "div", "item-start-date", item.startDate);
+    createAndAppendElement(item_element, "div", "item-end-date", item.endDate);
     createAndAppendElement(item_element, "div", "item-status", item.status);
+    createAndAppendElement(item_element, "div", "item-reason", item.reason);
+
 
     list.appendChild(item_element);
     console.log("List displayed!");

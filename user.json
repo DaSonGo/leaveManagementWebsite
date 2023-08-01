@@ -5,84 +5,108 @@
             "lastName": "Technologies",
             "ID": "1234",
             "status": "deny",
-            "date": "10/20/2023"
+            "startDate": "10/20/2023",
+            "endDate": "11/20/2023",
+            "reason": "WFH"
         },
         {
             "firstName": "Apple",
             "lastName": "Corp",
             "ID": "2314",
             "status": "deny",
-            "date": "10/20/2023"
+            "startDate": "10/20/2023",
+            "endDate": "1/20/2024",
+            "reason": "WFH"
         },
         {
             "firstName": "Google",
             "lastName": "Army",
             "ID": "3415",
             "status": "deny",
-            "date": "1/20/2023"
+            "startDate": "1/20/2023",
+            "endDate": "11/21/2022",
+            "reason": "WFH"
         },
         {
             "firstName": "WHO",
             "lastName": "Lab",
             "ID": "1776",
             "status": "pending",
-            "date": "12/20/2023"
+            "startDate": "12/20/2023",
+            "endDate": "1/20/2024",
+            "reason": "WFH"
         },
         {
             "firstName": "Hieu",
             "lastName": "Lam",
             "ID": "1245",
             "status": "approved",
-            "date": "8/20/2023"
+            "startDate": "8/20/2023",
+            "endDate": "9/22/2023",
+            "reason": "Annual Leave"
         },
         {
             "firstName": "Tolkien",
             "lastName": "Family",
             "ID": "7542",
             "status": "pending",
-            "date": "4/4/2023"
+            "startDate": "4/4/2023",
+            "endDate": "4/4/2023",
+            "reason": "Annual Leave"
         },
         {
             "firstName": "GOT",
             "lastName": "Laboratory",
             "ID": "9124",
             "status": "pending",
-            "date": "10/28/2023"
+            "startDate": "10/28/2023",
+            "endDate": "1/1/2024",
+            "reason": "Annual Leave"
         },
         {
             "firstName": "Lannister",
             "lastName": "Gang",
             "ID": "8871",
             "status": "pending",
-            "date": "10/15/2020"
+            "startDate": "10/15/2020",
+            "endDate": "11/15/2023",
+            "reason": "Sick Leave"
         },
         {
             "firstName": "Joffrey",
             "lastName": "Mob",
             "ID": "5466",
             "status": "pending",
-            "date": "10/20/2021"
+            "startDate": "10/20/2021",
+            "endDate": "12/12/2022",
+            "reason": "Sick Leave"
         },
         {
             "firstName": "Targaryen",
             "lastName": "Crib",
             "ID": "1897",
             "status": "pending",
-            "date": "10/20/2019"
+            "startDate": "10/20/2019",
+            "endDate": "11/21/2022",
+            "reason": "Sick Leave"
         },
         {
             "firstName": "Stark",
             "lastName": "Nation",
             "ID": "2466",
             "status": "approved",
-            "date": "4/25/2018"
+            "startDate": "4/25/2018",
+            "endDate": "11/21/2022",
+            "reason": "Sick Leave"
         },
         {
             "firstName": "Hobbit",
             "lastName": "Kingdom",
             "ID": "0912",
             "status": "approved",
-            "date": "6/7/2023"
+            "startDate": "6/7/2023",
+            "endDate": "11/21/2022",
+            "reason": "Sick Leave"
         }
     ]
 }
