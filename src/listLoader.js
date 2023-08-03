@@ -18,21 +18,21 @@ function listLoader(array = [], currentPage = 1, itemsPerPage = 6) {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedItems = array.slice(startIndex, endIndex);
-  for (let i = 0; i < array.length; i++) { //array.length causes the pagination to properly paginate. But causes potential bug/memory leak
-    let item = paginatedItems[i];
+  paginatedItems.forEach(item => { //array.length causes the pagination to properly paginate. But causes potential bug/memory leak
     let item_element = document.createElement("div");
     item_element.classList.add("list-item");
-
-    createAndAppendElement(item_element, "div", "item-firstName", item.firstName);
-    createAndAppendElement(item_element, "div", "item-lastName", item.lastName);
-    createAndAppendElement(item_element, "div", "item-start-date", item.startDate);
-    createAndAppendElement(item_element, "div", "item-end-date", item.endDate);
-    createAndAppendElement(item_element, "div", "item-status", item.status);
-    createAndAppendElement(item_element, "div", "item-reason", item.reason);
+    if (item) {
+      createAndAppendElement(item_element, "div", "item-firstName", item.firstName);
+      createAndAppendElement(item_element, "div", "item-lastName", item.lastName);
+      createAndAppendElement(item_element, "div", "item-start-date", item.startDate);
+      createAndAppendElement(item_element, "div", "item-end-date", item.endDate);
+      createAndAppendElement(item_element, "div", "item-status", item.status);
+      createAndAppendElement(item_element, "div", "item-reason", item.reason);
+    }
 
 
     list.appendChild(item_element);
     console.log("List displayed!");
-  }
+  })
 }
 export default listLoader;
