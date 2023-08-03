@@ -53,7 +53,7 @@ sortDropDown.addEventListener('change', function () {
 //Modal Created && Add Form Button
 console.log("Before modal creation");
 
-const modal = document.getElementById('myModal');
+const addModal = document.getElementById('addModal');
 const startDatePickerInput = document.getElementById('startDate');
 const endDatePickerInput = document.getElementById('endDate');
 
@@ -66,14 +66,90 @@ function flatPickrInit() {
         dateFormat: "m/d/y"
     })
 }
-function openModal() {
-    modal.style.display = 'block';
+function openAddModal() {
+    addModal.style.display = 'block';
 }
-function closeModal() {
+function closeAddModal() {
     // const modal = document.getElementById('myModal');
-    modal.style.display = 'none';
+    addModal.style.display = 'none';
 }
-function handleSubmit(event) {
+
+let idCounter = 0;
+function addHandleSubmit(event) {
+    event.preventDefault();
+
+    const existingData = list_items;
+
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const leaveDropDown = document.getElementById('leaveDropDown').value;
+    const description = document.getElementById('description').value;
+    const startDate = startDatePickerInput.value;
+    const endDate = endDatePickerInput.value;
+    const reason = document.getElementById('leaveDropDown').value;
+    // const formStatus = document.getElementById('status').value
+
+    const uniqueID = `${Date.now()}_${idCounter}`;
+    idCounter++;
+    let defaultStatus = 'pending'
+
+    const inputData =
+    {
+        "id": uniqueID,
+        "status": defaultStatus,
+        "firstName": firstName,
+        "lastName": lastName,
+        "leaveDropDown": leaveDropDown,
+        "description": description,
+        "startDate": startDate,
+        "endDate": endDate,
+        "reason": reason
+    }
+
+    console.log(inputData);
+
+    existingData.push(inputData);
+
+    const updatedData = JSON.stringify(existingData);
+    const parsedData = JSON.parse(updatedData);
+    console.log('this is updatedData', updatedData);
+    console.log('this is parsedData', parsedData);
+    closeAddModal();
+}
+
+flatPickrInit();
+const openAddModalBtn = document.getElementById('openAddModal');
+const closeAddBtn = document.getElementsByClassName('closeAddModal')[0];
+
+openAddModalBtn.addEventListener('click', openAddModal);
+closeAddBtn.addEventListener('click', closeAddModal);
+window.addEventListener('click', function (event) {
+    if (event.target === addModal) {
+        closeAddModal();
+    }
+});
+
+const addForm = document.getElementById('addForm');
+addForm.addEventListener('submit', addHandleSubmit);
+
+
+console.log("this is after modal");
+
+
+//-----------------------------------------------------------
+//Edit Modal Created
+
+const editModal = document.getElementById('editModal');
+
+function openEditModal() {
+    editModal.style.display = 'block';
+}
+
+function closeEditModal() {
+    editModal.style.display = 'none';
+}
+
+function editHandleSubmit(event) {
     event.preventDefault();
 
     const existingData = list_items;
@@ -103,26 +179,26 @@ function handleSubmit(event) {
     const parsedData = JSON.parse(updatedData);
     console.log('this is updatedData', updatedData);
     console.log('this is parsedData', parsedData);
-    closeModal();
+    closeEditModal();
 }
 
-flatPickrInit();
-const openModalBtn = document.getElementById('openModal');
-const closeBtn = document.getElementsByClassName('close')[0];
 
-openModalBtn.addEventListener('click', openModal);
-closeBtn.addEventListener('click', closeModal);
+flatPickrInit();
+const openEditModalBtn = document.getElementById('openEditModal');
+const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
+
+openEditModalBtn.addEventListener('click', openEditModal);
+closeEditBtn.addEventListener('click', closeEditModal);
 window.addEventListener('click', function (event) {
-    if (event.target === modal) {
-        closeModal();
+    if (event.target === editModal) {
+        closeEditModal();
     }
 });
 
-const form = document.getElementById('myForm');
-form.addEventListener('submit', handleSubmit);
+const editForm = document.getElementById('editForm');
+editForm.addEventListener('submit', editHandleSubmit);
 
 
-console.log("this is after modal");
 //-----------------------------------------------------------
 //Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
@@ -134,7 +210,6 @@ let currentPage = 1;
 const itemsPerPage = 6;
 function updateList(currentPage) {
     listLoader(list_items, currentPage, itemsPerPage);
-    currentPageElement.innerText = currentPage;
 }
 
 function createPaginationNumbers(totalPages) {
@@ -192,8 +267,9 @@ function search() {
     const filteredResults = list_items.filter(item =>
         item.firstName.toLowerCase().includes(searchTerm) ||
         item.lastName.toLowerCase().includes(searchTerm) ||
-        item.ID.toLowerCase().includes(searchTerm) ||
-        item.date.toLowerCase().includes(searchTerm) ||
+        item.ID.includes(searchTerm) ||
+        item.startDate.toLowerCase().includes(searchTerm) ||
+        item.endDate.toLowerCase().includes(searchTerm) ||
         item.status.toLowerCase().includes(searchTerm)
     );
 

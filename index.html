@@ -41,12 +41,12 @@
 
 
     <section class="form-modal">
-        <button id="openModal">Add Form</button>
-        <div id="myModal" class="modal">
+        <button id="openAddModal">Add Form</button>
+        <div id="addModal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Modal Form</h2>
-                <form id="myForm">
+                <span class="closeAddModal">&times;</span>
+                <h2>Add Form</h2>
+                <form id="addForm">
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" required>
                     <label for="lastName">Last Name:</label>
@@ -70,10 +70,36 @@
                 </form>
             </div>
         </div>
-        <button id="editModal">Edit Form</button>
-        <div id='editModal' class="modal"> </div>
-        <button id="editModal">Remove</button>
-        <div id='removeModal' class="modal"></div>
+
+        <button id="openEditModal">Edit Form</button>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="closeEditModal">&times;</span>
+                <h2>Edit Form</h2>
+                <form id="editForm">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" required>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" required>
+                    <!-- <label for="id">ID:</label>
+                    <input type="text" id="ID" required> -->
+                    <label for="leaveDropDown">Reason:</label>
+                    <select id="leaveDropDown">
+                        <option value="" disabled selected></option>
+                        <option value="WFH">WFH</option>
+                        <option value="annual-leave">Annual Leave</option>
+                        <option value="sick-leave">Sick Leave</option>
+                    </select>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" class="datePicker" required>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" class="datePicker" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" rows="4" required></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
 
     </section>
     <nav class="pagination-container">
