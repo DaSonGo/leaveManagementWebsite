@@ -1,6 +1,8 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 // import addForm from "./addForm.js";
+import { openEditModal, closeEditModal, editHandleSubmit, populateFormFields } from './listLoader.js';
+
 // import formPage from "./formPage.js";
 
 //display list imports
@@ -13,6 +15,10 @@ import sortingOptions, { sortItems, sortOptionsClickHandler } from "./sortingOpt
 //----------------------
 export const list = document.querySelector(".list");
 export const list_items = await JSONFileFetcher();
+let existingData = list_items;
+console.log('this is list_items', list_items);
+console.log('this is existing data', existingData);
+
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
 const sort_last_name_btn = document.querySelector(".sort-last-name");
@@ -139,65 +145,76 @@ console.log("this is after modal");
 //-----------------------------------------------------------
 //Edit Modal Created
 
-const editModal = document.getElementById('editModal');
+// const editModal = document.getElementById('editModal');
 
-function openEditModal() {
-    editModal.style.display = 'block';
-}
+// function openEditModal() {
+//     editModal.style.display = 'block';
+// }
 
-function closeEditModal() {
-    editModal.style.display = 'none';
-}
+// function closeEditModal() {
+//     editModal.style.display = 'none';
+// }
 
-function editHandleSubmit(event) {
-    event.preventDefault();
+// function editHandleSubmit(event) {
+//     event.preventDefault();
 
-    const existingData = list_items;
+//     const existingData = list_items;
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const leaveDropDown = document.getElementById('leaveDropDown').value;
-    const description = document.getElementById('description').value;
-    const startDate = startDatePickerInput.value;
-    const endDate = endDatePickerInput.value;
+//     const firstName = document.getElementById('firstName').value;
+//     const lastName = document.getElementById('lastName').value;
+//     const leaveDropDown = document.getElementById('leaveDropDown').value;
+//     const description = document.getElementById('description').value;
+//     const startDate = startDatePickerInput.value;
+//     const endDate = endDatePickerInput.value;
 
-    const inputData =
-    {
-        "firstName": firstName,
-        "lastName": lastName,
-        "leaveDropDown": leaveDropDown,
-        "description": description,
-        "startDate": startDate,
-        "endDate": endDate
-    }
+//     const inputData =
+//     {
+//         "firstName": firstName,
+//         "lastName": lastName,
+//         "leaveDropDown": leaveDropDown,
+//         "description": description,
+//         "startDate": startDate,
+//         "endDate": endDate
+//     }
 
-    console.log(inputData);
+//     console.log(inputData);
 
-    existingData.push(inputData);
+//     existingData.push(inputData);
 
-    const updatedData = JSON.stringify(existingData);
-    const parsedData = JSON.parse(updatedData);
-    console.log('this is updatedData', updatedData);
-    console.log('this is parsedData', parsedData);
-    closeEditModal();
-}
+//     const updatedData = JSON.stringify(existingData);
+//     const parsedData = JSON.parse(updatedData);
+//     console.log('this is updatedData', updatedData);
+//     console.log('this is parsedData', parsedData);
+//     closeEditModal();
+// }
 
 
-flatPickrInit();
+// flatPickrInit();
+// const openEditModalBtn = document.getElementById('openEditModal');
+// const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
+
+// openEditModalBtn.addEventListener('click', openEditModal);
+// closeEditBtn.addEventListener('click', closeEditModal);
+// window.addEventListener('click', function (event) {
+//     if (event.target === editModal) {
+//         closeEditModal();
+//     }
+// });
+
+// const editForm = document.getElementById('editForm');
+// editForm.addEventListener('submit', editHandleSubmit);
 const openEditModalBtn = document.getElementById('openEditModal');
-const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
+const closeEditBtn = document.querySelector('.closeEditModal');
+const editForm = document.getElementById('editForm');
 
-openEditModalBtn.addEventListener('click', openEditModal);
+openEditModalBtn.addEventListener('click', () => openEditModal(0)); // Open edit modal for the first item
 closeEditBtn.addEventListener('click', closeEditModal);
 window.addEventListener('click', function (event) {
     if (event.target === editModal) {
         closeEditModal();
     }
 });
-
-const editForm = document.getElementById('editForm');
 editForm.addEventListener('submit', editHandleSubmit);
-
 
 //-----------------------------------------------------------
 //Pagination Completed
@@ -209,7 +226,7 @@ const currentPageElement = paginationContainer.querySelector(".pagination-number
 let currentPage = 1;
 const itemsPerPage = 6;
 function updateList(currentPage) {
-    listLoader(list_items, currentPage, itemsPerPage);
+    listLoader(existingData, currentPage, itemsPerPage);
 }
 
 function createPaginationNumbers(totalPages) {
