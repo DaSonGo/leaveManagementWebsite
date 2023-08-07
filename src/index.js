@@ -220,10 +220,16 @@ const currentPageElement = paginationContainer.querySelector(".pagination-number
 
 let currentPage = 1;
 const itemsPerPage = 6;
+
 function updateList(currentPage) {
     listLoader(existingData, currentPage, itemsPerPage);
-}
 
+function updateList(currentPage = 1) {
+    listLoader(list_items, currentPage, itemsPerPage);
+    //currentPageElement.innerText = currentPage;
+
+}
+ 
 function createPaginationNumbers(totalPages) {
     // const paginationNumbersDiv = document.createElement('div');
     // paginationNumbersDiv.classList.add("pagination-numbers");
