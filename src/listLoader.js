@@ -3,6 +3,7 @@ import { list } from "./index.js";
 
 export const list_items = await JSONFileFetcher();
 // export const list = document.querySelector("list");
+console.log("this is listloader list_items", list_items);
 export function createAndAppendElement(parentElement, elementType, className, textContent) {
   const element = document.createElement(elementType);
   element.classList.add(className);
@@ -30,9 +31,101 @@ function listLoader(array = [], currentPage = 1, itemsPerPage = 6) {
     createAndAppendElement(item_element, "div", "item-status", item.status);
     createAndAppendElement(item_element, "div", "item-reason", item.reason);
 
+    const editButton = document.createElement("button");
+    editButton.innerText = "Edit";
+    editButton.classList.add("edit-button");
+    editButton.addEventListener("click", () => openEditModal(item.ID));
+    item_element.appendChild(editButton);
+
 
     list.appendChild(item_element);
     console.log("List displayed!");
   }
 }
+
+//----------------------------------------------------------
+// const existingData = list_items;
+const editModal = document.getElementById('editModal');
+const startDatePickerInput = document.getElementById('editStartDate');
+const endDatePickerInput = document.getElementById('editEndDate');
+let selectedId = null;
+
+function flatPickrInit() {
+  flatpickr(startDatePickerInput, {
+    dateFormat: "m/d/y"
+  });
+
+  flatpickr(endDatePickerInput, {
+    dateFormat: "m/d/y"
+  })
+}
+export function populateFormFields(id) {
+  const item = list_items.find(item => item.ID === id)
+  const stringifiedEditStartDate = JSON.parse(JSON.stringify(item.startDate));
+  const stringifiedEditEndDate = JSON.parse(JSON.stringify(item.endDate));
+  const stringifiedReason = JSON.parse(JSON.stringify(item.reason));
+  selectedId = id;
+
+  console.log(id, list_items);
+  console.log('this is listLoader existing Data', item);
+  console.log('this is listLoader item-id', item.ID);
+  console.log('this is dropDownList', item.reason);
+
+  document.getElementById('editFirstName').value = item.firstName;
+  document.getElementById('editLastName').value = item.lastName;
+  document.getElementById('editLeaveDropDown').value = stringifiedReason;
+  document.getElementById('editDescription').value = item.description;
+  document.getElementById('editStartDate').value = stringifiedEditStartDate;
+  document.getElementById('editEndDate').value = stringifiedEditEndDate;
+  document.getElementById('editIndex').value = list_items.findIndex(it => id.ID === selectedId);
+
+  console.log("this is startdate", startDatePickerInput);
+  console.log("this is end date", endDatePickerInput);
+  console.log("this is editIndex", document.getElementById('editIndex').value)
+}
+
+
+export function openEditModal(id) {
+  editModal.style.display = 'block';
+  populateFormFields(id);
+}
+
+export function closeEditModal() {
+  editModal.style.display = 'none';
+}
+export function editHandleSubmit(event) {
+  event.preventDefault();
+
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const leaveDropDown = document.getElementById('leaveDropDown').value;
+  const description = document.getElementById('description').value;
+  const startDatePickerInput = document.getElementById('editStartDate').value;
+  const endDatePickerInput = document.getElementById('editEndDate').value;
+
+  const editedData = {
+    "firstName": firstName,
+    "lastName": lastName,
+    "leaveDropDown": leaveDropDown,
+    "description": description,
+    "editStartDate": startDatePickerInput,
+    "editEndDate": endDatePickerInput
+  };
+
+  const index = list_items.findIndex(item => item.ID = selectedId)
+  // if (index >= 0 && index < list_items.length)
+  if (index !== -1) {
+    list_items[index] = editedData;
+
+    console.log('Updated Data:', list_items);
+    populateFormFields(index, list_items);
+    closeEditModal();
+  } else {
+    alert('Invalid index');
+  }
+}
+
+
+flatPickrInit();
+
 export default listLoader;

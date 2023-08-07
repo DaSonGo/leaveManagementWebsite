@@ -1,6 +1,8 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 // import addForm from "./addForm.js";
+import { openEditModal, closeEditModal, editHandleSubmit, populateFormFields } from './listLoader.js';
+
 // import formPage from "./formPage.js";
 
 //display list imports
@@ -13,6 +15,8 @@ import sortingOptions, { sortItems, sortOptionsClickHandler } from "./sortingOpt
 //----------------------
 export const list = document.querySelector(".list");
 export const list_items = await JSONFileFetcher();
+let existingData = list_items;
+
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
 const sort_last_name_btn = document.querySelector(".sort-last-name");
@@ -51,11 +55,10 @@ sortDropDown.addEventListener('change', function () {
 
 //-------------------------------------------------------------
 //Modal Created && Add Form Button
-console.log("Before modal creation");
 
 const addModal = document.getElementById('addModal');
-const startDatePickerInput = document.getElementById('startDate');
-const endDatePickerInput = document.getElementById('endDate');
+const startDatePickerInput = document.getElementById('addStartDate');
+const endDatePickerInput = document.getElementById('addEndDate');
 
 function flatPickrInit() {
     flatpickr(startDatePickerInput, {
@@ -80,13 +83,13 @@ function addHandleSubmit(event) {
 
     const existingData = list_items;
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const leaveDropDown = document.getElementById('leaveDropDown').value;
-    const description = document.getElementById('description').value;
+    const firstName = document.getElementById('addFirstName').value;
+    const lastName = document.getElementById('addLastName').value;
+    const leaveDropDown = document.getElementById('addLeaveDropDown').value;
+    const description = document.getElementById('addDescription').value;
     const startDate = startDatePickerInput.value;
     const endDate = endDatePickerInput.value;
-    const reason = document.getElementById('leaveDropDown').value;
+    const reason = document.getElementById('addLeaveDropDown').value;
     // const formStatus = document.getElementById('status').value
 
     const uniqueID = `${Date.now()}_${idCounter}`;
@@ -133,71 +136,81 @@ const addForm = document.getElementById('addForm');
 addForm.addEventListener('submit', addHandleSubmit);
 
 
-console.log("this is after modal");
-
 
 //-----------------------------------------------------------
 //Edit Modal Created
 
-const editModal = document.getElementById('editModal');
+// const editModal = document.getElementById('editModal');
 
-function openEditModal() {
-    editModal.style.display = 'block';
-}
+// function openEditModal() {
+//     editModal.style.display = 'block';
+// }
 
-function closeEditModal() {
-    editModal.style.display = 'none';
-}
+// function closeEditModal() {
+//     editModal.style.display = 'none';
+// }
 
-function editHandleSubmit(event) {
-    event.preventDefault();
+// function editHandleSubmit(event) {
+//     event.preventDefault();
 
-    const existingData = list_items;
+//     const existingData = list_items;
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const leaveDropDown = document.getElementById('leaveDropDown').value;
-    const description = document.getElementById('description').value;
-    const startDate = startDatePickerInput.value;
-    const endDate = endDatePickerInput.value;
+//     const firstName = document.getElementById('firstName').value;
+//     const lastName = document.getElementById('lastName').value;
+//     const leaveDdEveropDown = document.getElementById('leaveDropDown').value;
+//     const description = document.getElementById('description').value;
+//     const startDate = startDatePickerInput.value;
+//     const endDate = endDatePickerInput.value;
 
-    const inputData =
-    {
-        "firstName": firstName,
-        "lastName": lastName,
-        "leaveDropDown": leaveDropDown,
-        "description": description,
-        "startDate": startDate,
-        "endDate": endDate
-    }
+//     const inputData =
+//     {
+//         "firstName": firstName,
+//         "lastName": lastName,
+//         "leaveDropDown": leaveDropDown,
+//         "description": description,
+//         "startDate": startDate,
+//         "endDate": endDate
+//     }
 
-    console.log(inputData);
+//     console.log(inputData);
 
-    existingData.push(inputData);
+//     existingData.push(inputData);
 
-    const updatedData = JSON.stringify(existingData);
-    const parsedData = JSON.parse(updatedData);
-    console.log('this is updatedData', updatedData);
-    console.log('this is parsedData', parsedData);
-    closeEditModal();
-}
+//     const updatedData = JSON.stringify(existingData);
+//     const parsedData = JSON.parse(updatedData);
+//     console.log('this is updatedData', updatedData);
+//     console.log('this is parsedData', parsedData);
+//     closeEditModal();
+// }
 
 
-flatPickrInit();
+// flatPickrInit();
+// const openEditModalBtn = document.getElementById('openEditModal');
+// const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
+
+// openEditModalBtn.addEventListener('click', openEditModal);
+// closeEditBtn.addEventListener('click', closeEditModal);
+// window.addEventListener('click', function (event) {
+//     if (event.target === editModal) {
+//         closeEditModal();
+//     }
+// });
+
+// const editForm = document.getElementById('editForm');
+// editForm.addEventListener('submit', editHandleSubmit);
 const openEditModalBtn = document.getElementById('openEditModal');
-const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
+const closeEditBtn = document.querySelector('.closeEditModal');
+const editForm = document.getElementById('editForm');
 
-openEditModalBtn.addEventListener('click', openEditModal);
+openEditModalBtn.addEventListener('click', () => openEditModal()); // Open edit modal for the first item
+
 closeEditBtn.addEventListener('click', closeEditModal);
 window.addEventListener('click', function (event) {
     if (event.target === editModal) {
         closeEditModal();
     }
 });
-
-const editForm = document.getElementById('editForm');
 editForm.addEventListener('submit', editHandleSubmit);
-
 
 //-----------------------------------------------------------
 //Pagination Completed
@@ -208,10 +221,16 @@ const currentPageElement = paginationContainer.querySelector(".pagination-number
 
 let currentPage = 1;
 const itemsPerPage = 6;
-function updateList(currentPage) {
-    listLoader(list_items, currentPage, itemsPerPage);
-}
 
+function updateList(currentPage) {
+    listLoader(existingData, currentPage, itemsPerPage);
+
+    function updateList(currentPage = 1) {
+        listLoader(list_items, currentPage, itemsPerPage);
+        //currentPageElement.innerText = currentPage;
+
+    }
+}
 function createPaginationNumbers(totalPages) {
     // const paginationNumbersDiv = document.createElement('div');
     // paginationNumbersDiv.classList.add("pagination-numbers");
@@ -260,7 +279,6 @@ nextButton.addEventListener("click", () => {
 //Search-bar Creation
 
 const searchInput = document.getElementById('searchInput')
-console.log('this is search input', searchInput);
 
 function search() {
     const searchTerm = searchInput.value.toLowerCase()
@@ -298,7 +316,7 @@ searchInput.addEventListener("input", debouncedSearch);
 
 function remove_btn(index) {
     let modifiableData = list_items;
-    console.log('this is modifableData', modifiableData);
+
     if (Array.isArray(modifiableData) && index >= 0 && index < modifiableData.length) {
         modifiableData.splice(index, 1);
 
