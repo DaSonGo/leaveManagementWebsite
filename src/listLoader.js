@@ -46,8 +46,8 @@ function listLoader(array = [], currentPage = 1, itemsPerPage = 6) {
 //----------------------------------------------------------
 // const existingData = list_items;
 const editModal = document.getElementById('editModal');
-const startDatePickerInput = document.getElementById('startDate');
-const endDatePickerInput = document.getElementById('endDate');
+const startDatePickerInput = document.getElementById('editStartDate');
+const endDatePickerInput = document.getElementById('editEndDate');
 let selectedId = null;
 
 function flatPickrInit() {
@@ -60,21 +60,28 @@ function flatPickrInit() {
   })
 }
 export function populateFormFields(id) {
-  const item = list_items.find(item => item.ID = id)
+  const item = list_items.find(item => item.ID === id)
+  const stringifiedEditStartDate = JSON.parse(JSON.stringify(item.startDate));
+  const stringifiedEditEndDate = JSON.parse(JSON.stringify(item.endDate));
+  const stringifiedReason = JSON.parse(JSON.stringify(item.reason));
   selectedId = id;
 
+  console.log(id, list_items);
   console.log('this is listLoader existing Data', item);
   console.log('this is listLoader item-id', item.ID);
+  console.log('this is dropDownList', item.reason);
 
-  document.getElementById('firstName').value = item.firstName
-  document.getElementById('lastName').value = item.lastName;
-  document.getElementById('leaveDropDown').value = item.leaveDropDown;
-  document.getElementById('description').value = item.description;
-  document.getElementById('startDate').value = item.startDatePickerInput;
-  document.getElementById('endDate').value = item.endDatePickerInput;
-  document.getElementById('editIndex').value
-    = list_items.findIndex(it => item.firstName === it.firstName
-      && item.lastName === it.lastName);
+  document.getElementById('editFirstName').value = item.firstName;
+  document.getElementById('editLastName').value = item.lastName;
+  document.getElementById('editLeaveDropDown').value = stringifiedReason;
+  document.getElementById('editDescription').value = item.description;
+  document.getElementById('editStartDate').value = stringifiedEditStartDate;
+  document.getElementById('editEndDate').value = stringifiedEditEndDate;
+  document.getElementById('editIndex').value = list_items.findIndex(it => id.ID === selectedId);
+
+  console.log("this is startdate", startDatePickerInput);
+  console.log("this is end date", endDatePickerInput);
+  console.log("this is editIndex", document.getElementById('editIndex').value)
 }
 
 
@@ -93,16 +100,16 @@ export function editHandleSubmit(event) {
   const lastName = document.getElementById('lastName').value;
   const leaveDropDown = document.getElementById('leaveDropDown').value;
   const description = document.getElementById('description').value;
-  const startDatePickerInput = document.getElementById('startDate').value;
-  const endDatePickerInput = document.getElementById('endDate').value;
+  const startDatePickerInput = document.getElementById('editStartDate').value;
+  const endDatePickerInput = document.getElementById('editEndDate').value;
 
   const editedData = {
     "firstName": firstName,
     "lastName": lastName,
     "leaveDropDown": leaveDropDown,
     "description": description,
-    "startDate": startDatePickerInput,
-    "endDate": endDatePickerInput
+    "editStartDate": startDatePickerInput,
+    "editEndDate": endDatePickerInput
   };
 
   const index = list_items.findIndex(item => item.ID = selectedId)

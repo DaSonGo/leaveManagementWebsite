@@ -57,8 +57,8 @@ sortDropDown.addEventListener('change', function () {
 //Modal Created && Add Form Button
 
 const addModal = document.getElementById('addModal');
-const startDatePickerInput = document.getElementById('startDate');
-const endDatePickerInput = document.getElementById('endDate');
+const startDatePickerInput = document.getElementById('addStartDate');
+const endDatePickerInput = document.getElementById('addEndDate');
 
 function flatPickrInit() {
     flatpickr(startDatePickerInput, {
@@ -83,13 +83,13 @@ function addHandleSubmit(event) {
 
     const existingData = list_items;
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const leaveDropDown = document.getElementById('leaveDropDown').value;
-    const description = document.getElementById('description').value;
+    const firstName = document.getElementById('addFirstName').value;
+    const lastName = document.getElementById('addLastName').value;
+    const leaveDropDown = document.getElementById('addLeaveDropDown').value;
+    const description = document.getElementById('addDescription').value;
     const startDate = startDatePickerInput.value;
     const endDate = endDatePickerInput.value;
-    const reason = document.getElementById('leaveDropDown').value;
+    const reason = document.getElementById('addLeaveDropDown').value;
     // const formStatus = document.getElementById('status').value
 
     const uniqueID = `${Date.now()}_${idCounter}`;
@@ -202,7 +202,8 @@ const openEditModalBtn = document.getElementById('openEditModal');
 const closeEditBtn = document.querySelector('.closeEditModal');
 const editForm = document.getElementById('editForm');
 
-openEditModalBtn.addEventListener('click', () => openEditModal(0)); // Open edit modal for the first item
+openEditModalBtn.addEventListener('click', () => openEditModal()); // Open edit modal for the first item
+
 closeEditBtn.addEventListener('click', closeEditModal);
 window.addEventListener('click', function (event) {
     if (event.target === editModal) {
