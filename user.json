@@ -7,7 +7,8 @@
             "status": "deny",
             "startDate": "10/20/2023",
             "endDate": "11/20/2023",
-            "reason": "WFH"
+            "reason": "WFH",
+            "description": "Sick"
         },
         {
             "firstName": "Apple",
@@ -16,7 +17,8 @@
             "status": "deny",
             "startDate": "10/20/2023",
             "endDate": "1/20/2024",
-            "reason": "WFH"
+            "reason": "WFH",
+            "description": "Sick"
         },
         {
             "firstName": "Google",
@@ -25,7 +27,8 @@
             "status": "deny",
             "startDate": "1/20/2023",
             "endDate": "11/21/2022",
-            "reason": "WFH"
+            "reason": "WFH",
+            "description": "Sick"
         },
         {
             "firstName": "WHO",
@@ -34,7 +37,8 @@
             "status": "pending",
             "startDate": "12/20/2023",
             "endDate": "1/20/2024",
-            "reason": "WFH"
+            "reason": "WFH",
+            "description": "Accident"
         },
         {
             "firstName": "Hieu",
@@ -43,7 +47,8 @@
             "status": "approved",
             "startDate": "8/20/2023",
             "endDate": "9/22/2023",
-            "reason": "Annual Leave"
+            "reason": "Annual Leave",
+            "description": "Accident"
         },
         {
             "firstName": "Tolkien",
@@ -52,7 +57,8 @@
             "status": "pending",
             "startDate": "4/4/2023",
             "endDate": "4/4/2023",
-            "reason": "Annual Leave"
+            "reason": "Annual Leave",
+            "description": "Accident"
         },
         {
             "firstName": "GOT",
@@ -61,7 +67,8 @@
             "status": "pending",
             "startDate": "10/28/2023",
             "endDate": "1/1/2024",
-            "reason": "Annual Leave"
+            "reason": "Annual Leave",
+            "description": "Personal Issues"
         },
         {
             "firstName": "Lannister",
@@ -70,7 +77,8 @@
             "status": "pending",
             "startDate": "10/15/2020",
             "endDate": "11/15/2023",
-            "reason": "Sick Leave"
+            "reason": "Sick Leave",
+            "description": "Personal Issues"
         },
         {
             "firstName": "Joffrey",
@@ -88,7 +96,8 @@
             "status": "pending",
             "startDate": "10/20/2019",
             "endDate": "11/21/2022",
-            "reason": "Sick Leave"
+            "reason": "Sick Leave",
+            "description": "Personal Issues"
         },
         {
             "firstName": "Stark",
@@ -97,7 +106,8 @@
             "status": "approved",
             "startDate": "4/25/2018",
             "endDate": "11/21/2022",
-            "reason": "Sick Leave"
+            "reason": "Sick Leave",
+            "description": "Burnout"
         },
         {
             "firstName": "Hobbit",
@@ -106,7 +116,8 @@
             "status": "approved",
             "startDate": "6/7/2023",
             "endDate": "11/21/2022",
-            "reason": "Sick Leave"
+            "reason": "Sick Leave",
+            "description": "Burnout"
         }
     ]
 }

@@ -16,8 +16,6 @@ import sortingOptions, { sortItems, sortOptionsClickHandler } from "./sortingOpt
 export const list = document.querySelector(".list");
 export const list_items = await JSONFileFetcher();
 let existingData = list_items;
-console.log('this is list_items', list_items);
-console.log('this is existing data', existingData);
 
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
@@ -57,7 +55,6 @@ sortDropDown.addEventListener('change', function () {
 
 //-------------------------------------------------------------
 //Modal Created && Add Form Button
-console.log("Before modal creation");
 
 const addModal = document.getElementById('addModal');
 const startDatePickerInput = document.getElementById('startDate');
@@ -139,8 +136,6 @@ const addForm = document.getElementById('addForm');
 addForm.addEventListener('submit', addHandleSubmit);
 
 
-console.log("this is after modal");
-
 
 //-----------------------------------------------------------
 //Edit Modal Created
@@ -162,7 +157,7 @@ console.log("this is after modal");
 
 //     const firstName = document.getElementById('firstName').value;
 //     const lastName = document.getElementById('lastName').value;
-//     const leaveDropDown = document.getElementById('leaveDropDown').value;
+//     const leaveDdEveropDown = document.getElementById('leaveDropDown').value;
 //     const description = document.getElementById('description').value;
 //     const startDate = startDatePickerInput.value;
 //     const endDate = endDatePickerInput.value;
@@ -277,7 +272,6 @@ nextButton.addEventListener("click", () => {
 //Search-bar Creation
 
 const searchInput = document.getElementById('searchInput')
-console.log('this is search input', searchInput);
 
 function search() {
     const searchTerm = searchInput.value.toLowerCase()
@@ -315,7 +309,7 @@ searchInput.addEventListener("input", debouncedSearch);
 
 function remove_btn(index) {
     let modifiableData = list_items;
-    console.log('this is modifableData', modifiableData);
+
     if (Array.isArray(modifiableData) && index >= 0 && index < modifiableData.length) {
         modifiableData.splice(index, 1);
 
