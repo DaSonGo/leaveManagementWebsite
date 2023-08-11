@@ -1,7 +1,7 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 // import addForm from "./addForm.js";
-import { openEditModal, closeEditModal, editHandleSubmit, populateFormFields } from './listLoader.js';
+import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler } from './listLoader.js';
 
 // import formPage from "./formPage.js";
 
@@ -201,6 +201,10 @@ addForm.addEventListener('submit', addHandleSubmit);
 const openEditModalBtn = document.getElementById('openEditModal');
 const closeEditBtn = document.querySelector('.closeEditModal');
 const editForm = document.getElementById('editForm');
+const approveEditModalBtn = document.getElementById('editApprove');
+const denyEditModalBtn = document.getElementById('editDeny');
+
+
 
 openEditModalBtn.addEventListener('click', () => openEditModal()); // Open edit modal for the first item
 
@@ -212,6 +216,10 @@ window.addEventListener('click', function (event) {
 });
 editForm.addEventListener('submit', editHandleSubmit);
 
+approveEditModalBtn.addEventListener('click', () => {
+    acceptButtonHandler();
+});
+
 //-----------------------------------------------------------
 //Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
@@ -222,7 +230,7 @@ const currentPageElement = paginationContainer.querySelector(".pagination-number
 let currentPage = 1;
 const itemsPerPage = 6;
 
-function updateList(currentPage) {
+export function updateList(currentPage) {
     listLoader(existingData, currentPage, itemsPerPage);
 
     function updateList(currentPage = 1) {
