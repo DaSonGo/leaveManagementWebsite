@@ -61,14 +61,19 @@ function flatPickrInit() {
   })
 }
 export function populateFormFields(id) {
+  console.log('populate', id);
   const lookup = new Map();
   lookup.set('Annual Leave', 'annual-leave');
   lookup.set('WFH', 'WFH');
   lookup.set('Sick Leave', 'sick-leave');
-  const item = list_items.find(item => item.ID === id)
-  const stringifiedEditStartDate = JSON.parse(JSON.stringify(item.startDate));
-  const stringifiedEditEndDate = JSON.parse(JSON.stringify(item.endDate));
-  const stringifiedReason = JSON.parse(JSON.stringify(item.reason));
+  const item = list_items.find(item => item.ID === id);
+  if (!item) return;
+  // const stringifiedEditStartDate = JSON.parse(JSON.stringify(item.startDate));
+  const stringifiedEditStartDate = item.startDate;
+  // const stringifiedEditEndDate = JSON.parse(JSON.stringify(item.endDate));
+  const stringifiedEditEndDate = item.endDate;
+  // const stringifiedReason = JSON.parse(JSON.stringify(item.reason));
+  const stringifiedReason = item.reason;
   selectedId = id;
 
   console.log(id, list_items);
@@ -79,6 +84,7 @@ export function populateFormFields(id) {
 
   document.getElementById('editFirstName').value = item.firstName;
   document.getElementById('editLastName').value = item.lastName;
+  document.getElementById('editID').value = item.ID;
   document.getElementById('editLeaveDropDown').value = lookup.get(stringifiedReason);
   document.getElementById('editDescription').value = item.description;
   document.getElementById('editStartDate').value = stringifiedEditStartDate;
@@ -104,6 +110,7 @@ export function editHandleSubmit(event) {
 
   const firstName = document.getElementById('editFirstName').value;
   const lastName = document.getElementById('editLastName').value;
+  const ID = document.getElementById('editID').value;
   const leaveDropDown = document.getElementById('editLeaveDropDown').value;
   const description = document.getElementById('editDescription').value;
   const startDatePickerInput = document.getElementById('editStartDate').value;
@@ -112,13 +119,16 @@ export function editHandleSubmit(event) {
   const editedData = {
     "firstName": firstName,
     "lastName": lastName,
+    "ID": ID,
+    "startDate": startDatePickerInput,
+    "endDate": endDatePickerInput,
     "reason": leaveDropDown,
     "description": description,
-    "startDate": startDatePickerInput,
-    "endDate": endDatePickerInput
+
+
   };
 
-  const index = list_items.findIndex(item => item.ID = selectedId)
+  const index = list_items.findIndex(item => item.ID === selectedId)
 
   // if (index >= 0 && index < list_items.length)
   if (index !== -1) {
@@ -126,8 +136,11 @@ export function editHandleSubmit(event) {
 
     console.log('Updated Data:', list_items);
     console.log('Current index:', index);
-    populateFormFields(index, list_items);
+    // populateFormFields(index, list_items);
+    populateFormFields(ID, list_items);
     // acceptButtonHandler(index, list_items);
+    acceptButtonHandler(ID, list_items);
+    denyButtonHandler(ID, list_items);
     closeEditModal();
   } else {
     alert('Invalid index');
@@ -135,14 +148,37 @@ export function editHandleSubmit(event) {
 }
 
 export function acceptButtonHandler(id) {
-  const item = list_items.find(item => item.ID === id)
-
-  if (item !== -1) {
+  const item = list_items.find((item) => item.ID === id)
+  console.log("check id", id);
+  console.log("Check if data status found", item);
+  if (item) {
     item.status = "Approved";
-    console.log("what is current item?", item);
-    console.log('Form with ID ' + id + ' has been approved');
+
+    console.log("Item has been approved:", item);
+    console.log('Form with ID ' + item.ID + ' has been approved');
   } else {
-    console.log("form not found");
+    console.log("form not found", id);
+  }
+
+}
+
+
+export function denyButtonHandler(id) {
+  const item = list_items.find((item) => id === item.ID)
+  console.log("check id", id);
+  console.log("Check if data status found", item);
+  if (item) {
+    item.status = "Deny";
+
+    const denialReason = prompt("Enter reason for denial: ");
+    if (denialReason) {
+      console.log("Reason for denial: ", denialReason);
+    }
+
+    console.log("Item has been Denied:", item);
+    console.log('Form with ID ' + item.ID + ' has been denied');
+  } else {
+    console.log("form not found", id);
   }
 
 }

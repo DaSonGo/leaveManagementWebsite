@@ -1,7 +1,7 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 // import addForm from "./addForm.js";
-import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler } from './listLoader.js';
+import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler } from './listLoader.js';
 
 // import formPage from "./formPage.js";
 
@@ -89,12 +89,18 @@ function addHandleSubmit(event) {
     const description = document.getElementById('addDescription').value;
     const startDate = startDatePickerInput.value;
     const endDate = endDatePickerInput.value;
-    const reason = document.getElementById('addLeaveDropDown').value;
-    // const formStatus = document.getElementById('status').value
+    let reason = document.getElementById('addLeaveDropDown').value;
 
     const uniqueID = `${Date.now()}_${idCounter}`;
     idCounter++;
     let defaultStatus = 'pending'
+
+    if (reason === "sick-leave") {
+        reason = "Sick Leave";
+    } else if (reason === "annual-leave") {
+        reason = "Annual Leave";
+    }
+
 
     const inputData =
     {
@@ -218,6 +224,10 @@ editForm.addEventListener('submit', editHandleSubmit);
 
 approveEditModalBtn.addEventListener('click', () => {
     acceptButtonHandler();
+});
+
+denyEditModalBtn.addEventListener('click', () => {
+    denyButtonHandler();
 });
 
 //-----------------------------------------------------------
