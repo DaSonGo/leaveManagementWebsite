@@ -61,12 +61,11 @@ function flatPickrInit() {
   })
 }
 export function populateFormFields(id) {
-  
+  console.log('populate', id);
   const lookup = new Map();
   lookup.set('Annual Leave', 'annual-leave');
   lookup.set('WFH', 'WFH');
   lookup.set('Sick Leave', 'sick-leave');
-
   const item = list_items.find(item => item.ID === id);
   if (!item) return;
   // const stringifiedEditStartDate = JSON.parse(JSON.stringify(item.startDate));
@@ -75,7 +74,6 @@ export function populateFormFields(id) {
   const stringifiedEditEndDate = item.endDate;
   // const stringifiedReason = JSON.parse(JSON.stringify(item.reason));
   const stringifiedReason = item.reason;
-
   selectedId = id;
 
   console.log(id, list_items);
@@ -86,8 +84,8 @@ export function populateFormFields(id) {
 
   document.getElementById('editFirstName').value = item.firstName;
   document.getElementById('editLastName').value = item.lastName;
-
-
+  document.getElementById('editID').value = item.ID;
+  document.getElementById('editLeaveDropDown').value = lookup.get(stringifiedReason);
   document.getElementById('editDescription').value = item.description;
   document.getElementById('editStartDate').value = stringifiedEditStartDate;
   document.getElementById('editEndDate').value = stringifiedEditEndDate;
