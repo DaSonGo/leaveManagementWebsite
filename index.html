@@ -81,8 +81,8 @@
                     <input type="text" id="editFirstName" required>
                     <label for="lastName">Last Name:</label>
                     <input type="text" id="editLastName" required>
-                    <!-- <label for="id">ID:</label>
-                    <input type="text" id="ID" required> -->
+                    <label for="id">ID:</label>
+                    <input type="text" id="editID" readonly>
                     <label for="editLeaveDropDown">Reason:</label>
                     <select id="editLeaveDropDown">
                         <option value="" disabled selected></option>
@@ -98,6 +98,8 @@
                     <textarea id="editDescription" rows="4" required></textarea>
                     <input type="hidden" id="editIndex">
                     <input type="submit" value="Submit">
+                    <button id="editApprove">Approve</button>
+                    <button id="editDeny">Deny</button>
                 </form>
             </div>
         </div>

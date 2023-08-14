@@ -1,7 +1,7 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 
 // import addForm from "./addForm.js";
-import { openEditModal, closeEditModal, editHandleSubmit, populateFormFields } from './listLoader.js';
+import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler } from './listLoader.js';
 
 // import formPage from "./formPage.js";
 
@@ -89,12 +89,18 @@ function addHandleSubmit(event) {
     const description = document.getElementById('addDescription').value;
     const startDate = startDatePickerInput.value;
     const endDate = endDatePickerInput.value;
-    const reason = document.getElementById('addLeaveDropDown').value;
-    // const formStatus = document.getElementById('status').value
+    let reason = document.getElementById('addLeaveDropDown').value;
 
     const uniqueID = `${Date.now()}_${idCounter}`;
     idCounter++;
     let defaultStatus = 'pending'
+
+    if (reason === "sick-leave") {
+        reason = "Sick Leave";
+    } else if (reason === "annual-leave") {
+        reason = "Annual Leave";
+    }
+
 
     const inputData =
     {
@@ -201,6 +207,10 @@ addForm.addEventListener('submit', addHandleSubmit);
 const openEditModalBtn = document.getElementById('openEditModal');
 const closeEditBtn = document.querySelector('.closeEditModal');
 const editForm = document.getElementById('editForm');
+const approveEditModalBtn = document.getElementById('editApprove');
+const denyEditModalBtn = document.getElementById('editDeny');
+
+
 
 openEditModalBtn.addEventListener('click', () => openEditModal()); // Open edit modal for the first item
 
@@ -212,6 +222,14 @@ window.addEventListener('click', function (event) {
 });
 editForm.addEventListener('submit', editHandleSubmit);
 
+approveEditModalBtn.addEventListener('click', () => {
+    acceptButtonHandler();
+});
+
+denyEditModalBtn.addEventListener('click', () => {
+    denyButtonHandler();
+});
+
 //-----------------------------------------------------------
 //Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
@@ -222,7 +240,7 @@ const currentPageElement = paginationContainer.querySelector(".pagination-number
 let currentPage = 1;
 const itemsPerPage = 6;
 
-function updateList(currentPage) {
+export function updateList(currentPage) {
     listLoader(existingData, currentPage, itemsPerPage);
 
     function updateList(currentPage = 1) {
