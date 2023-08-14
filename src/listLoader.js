@@ -85,7 +85,7 @@ export function populateFormFields(id) {
   document.getElementById('editFirstName').value = item.firstName;
   document.getElementById('editLastName').value = item.lastName;
   document.getElementById('editID').value = item.ID;
-  document.getElementById('editLeaveDropDown').value = lookup.get(stringifiedReason);
+  document.getElementById('editLeaveDropDown').value = lookup.get(lookup.get(stringifiedReason));
   document.getElementById('editDescription').value = item.description;
   document.getElementById('editStartDate').value = stringifiedEditStartDate;
   document.getElementById('editEndDate').value = stringifiedEditEndDate;
