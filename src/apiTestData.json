@@ -1,0 +1,19 @@
+{
+    "data": {
+        "list": [
+            {
+                "description": "Feeling unwell and need to take some rest.",
+                "firstName": "John",
+                "isDeleted": false,
+                "lastName": "Doe",
+                "periodEndDate": "2023-08-06T00:00:00.000Z",
+                "periodStartDate": "2023-08-04T00:00:00.000Z",
+                "status": "pending",
+                "submissionDate": "2023-08-03T10:05:12.116Z",
+                "type": "Sick Leave",
+                "__v": 0,
+                "_id": "64cb7bd86976401b0362ad92"
+            }
+        ]
+    }
+}
