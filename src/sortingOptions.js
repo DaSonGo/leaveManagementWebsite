@@ -1,5 +1,7 @@
 import listLoader, { createAndAppendElement } from "./listLoader.js";
 import { list_items, list } from "./index.js";
+import apiDataFetcher from "./apiDataFetcher.js";
+export const apiData = await apiDataFetcher();
 
 const sortingOptions = [
   {
@@ -62,7 +64,7 @@ function sort_array_by(array, sort) {
 }
 export function sortItems(property) {
   console.log("sortItem running: ", property);
-  let array = sort_array_by(list_items, property);
+  let array = sort_array_by(apiData, property);
   listLoader(array);
 }
 

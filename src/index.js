@@ -1,4 +1,5 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
+import apiDataFetcher from "./apiDataFetcher.js";
 
 // import addForm from "./addForm.js";
 import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler } from './listLoader.js';
@@ -16,6 +17,9 @@ import sortingOptions, { sortItems, sortOptionsClickHandler } from "./sortingOpt
 export const list = document.querySelector(".list");
 export const list_items = await JSONFileFetcher();
 let existingData = list_items;
+
+export const apiData = await apiDataFetcher();
+console.log("This is API Data", apiData);
 
 
 const sort_first_name_btn = document.querySelector(".sort-first-name");
@@ -81,7 +85,7 @@ let idCounter = 0;
 function addHandleSubmit(event) {
     event.preventDefault();
 
-    const existingData = list_items;
+    const existingData = apiData;
 
     const firstName = document.getElementById('addFirstName').value;
     const lastName = document.getElementById('addLastName').value;
@@ -146,64 +150,6 @@ addForm.addEventListener('submit', addHandleSubmit);
 //-----------------------------------------------------------
 //Edit Modal Created
 
-// const editModal = document.getElementById('editModal');
-
-// function openEditModal() {
-//     editModal.style.display = 'block';
-// }
-
-// function closeEditModal() {
-//     editModal.style.display = 'none';
-// }
-
-// function editHandleSubmit(event) {
-//     event.preventDefault();
-
-//     const existingData = list_items;
-
-//     const firstName = document.getElementById('firstName').value;
-//     const lastName = document.getElementById('lastName').value;
-//     const leaveDdEveropDown = document.getElementById('leaveDropDown').value;
-//     const description = document.getElementById('description').value;
-//     const startDate = startDatePickerInput.value;
-//     const endDate = endDatePickerInput.value;
-
-//     const inputData =
-//     {
-//         "firstName": firstName,
-//         "lastName": lastName,
-//         "leaveDropDown": leaveDropDown,
-//         "description": description,
-//         "startDate": startDate,
-//         "endDate": endDate
-//     }
-
-//     console.log(inputData);
-
-//     existingData.push(inputData);
-
-//     const updatedData = JSON.stringify(existingData);
-//     const parsedData = JSON.parse(updatedData);
-//     console.log('this is updatedData', updatedData);
-//     console.log('this is parsedData', parsedData);
-//     closeEditModal();
-// }
-
-
-// flatPickrInit();
-// const openEditModalBtn = document.getElementById('openEditModal');
-// const closeEditBtn = document.getElementsByClassName('closeEditModal')[0];
-
-// openEditModalBtn.addEventListener('click', openEditModal);
-// closeEditBtn.addEventListener('click', closeEditModal);
-// window.addEventListener('click', function (event) {
-//     if (event.target === editModal) {
-//         closeEditModal();
-//     }
-// });
-
-// const editForm = document.getElementById('editForm');
-// editForm.addEventListener('submit', editHandleSubmit);
 const openEditModalBtn = document.getElementById('openEditModal');
 const closeEditBtn = document.querySelector('.closeEditModal');
 const editForm = document.getElementById('editForm');
@@ -230,6 +176,7 @@ denyEditModalBtn.addEventListener('click', () => {
     denyButtonHandler();
 });
 
+
 //-----------------------------------------------------------
 //Pagination Completed
 const paginationContainer = document.querySelector(".pagination-container");
@@ -241,13 +188,7 @@ let currentPage = 1;
 const itemsPerPage = 6;
 
 export function updateList(currentPage) {
-    listLoader(existingData, currentPage, itemsPerPage);
-
-    function updateList(currentPage = 1) {
-        listLoader(list_items, currentPage, itemsPerPage);
-        //currentPageElement.innerText = currentPage;
-
-    }
+    listLoader(apiData, currentPage, itemsPerPage);
 }
 function createPaginationNumbers(totalPages) {
     // const paginationNumbersDiv = document.createElement('div');
@@ -268,7 +209,7 @@ function createPaginationNumbers(totalPages) {
     return;
 }
 
-const totalPages = Math.ceil(list_items.length / itemsPerPage);
+const totalPages = Math.ceil(apiData.length / itemsPerPage);
 createPaginationNumbers(totalPages);
 
 
@@ -283,7 +224,7 @@ prevButton.addEventListener("click", () => {
 });
 
 nextButton.addEventListener("click", () => {
-    const totalPages = Math.ceil(list_items.length / itemsPerPage);
+    const totalPages = Math.ceil(apiData.length / itemsPerPage);
     console.log('next button clicked');
     if (currentPage < totalPages) {
         currentPage++;
@@ -293,14 +234,13 @@ nextButton.addEventListener("click", () => {
 
 
 //-----------------------------------------------------------
-
 //Search-bar Creation
 
 const searchInput = document.getElementById('searchInput')
 
 function search() {
     const searchTerm = searchInput.value.toLowerCase()
-    const filteredResults = list_items.filter(item =>
+    const filteredResults = apiData.filter(item =>
         item.firstName.toLowerCase().includes(searchTerm) ||
         item.lastName.toLowerCase().includes(searchTerm) ||
         item.ID.includes(searchTerm) ||
@@ -332,14 +272,14 @@ searchInput.addEventListener("input", debouncedSearch);
 //-----------------------------------------------------------
 //Remove Button
 
-function remove_btn(index) {
-    let modifiableData = list_items;
+// function remove_btn(index) {
+//     let modifiableData = apiData;
 
-    if (Array.isArray(modifiableData) && index >= 0 && index < modifiableData.length) {
-        modifiableData.splice(index, 1);
+//     if (Array.isArray(modifiableData) && index >= 0 && index < modifiableData.length) {
+//         modifiableData.splice(index, 1);
 
-        updateList(modifiableData);
-    }
-}
-remove_btn();
+//         updateList(modifiableData);
+//     }
+// }
+// remove_btn();
 updateList();
