@@ -130,13 +130,13 @@ export function editHandleSubmit(event) {
     "firstName": firstName,
     "lastName": lastName,
     "ID": ID,
-    "startDate": startDatePickerInput,
-    "endDate": endDatePickerInput,
-    "reason": leaveDropDown,
+    "periodStartDate": startDatePickerInput,
+    "periodEndDate": endDatePickerInput,
+    "type": leaveDropDown,
     "description": description,
   };
 
-  const index = apiData.findIndex(item => item.ID === selectedId)
+  const index = apiData.findIndex(item => item._id === selectedId)
   console.log("this is index", index);
   // if (index >= 0 && index < list_items.length)
   if (index !== -1) {
@@ -168,7 +168,6 @@ export function acceptButtonHandler(id) {
   } else {
     console.log("form not found", id);
   }
-
 }
 
 
@@ -189,7 +188,6 @@ export function denyButtonHandler(id) {
   } else {
     console.log("form not found", id);
   }
-
 }
 
 flatPickrInit();
@@ -197,7 +195,7 @@ flatPickrInit();
 //----------------------------------------------------------
 //Format data functions
 
-function formatDate(dateString) {
+export function formatDate(dateString) {
   const date = new Date(dateString);
   const mm = String(date.getMonth() + 1).padStart(2, '0');
   const dd = String(date.getDate()).padStart(2, '0');

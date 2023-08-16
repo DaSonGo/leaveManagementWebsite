@@ -2,7 +2,7 @@ import JSONFileFetcher from "./JSONFileFetcher.js";
 import apiDataFetcher from "./apiDataFetcher.js";
 
 // import addForm from "./addForm.js";
-import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler } from './listLoader.js';
+import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler, formatDate } from './listLoader.js';
 
 // import formPage from "./formPage.js";
 
@@ -87,12 +87,23 @@ function addHandleSubmit(event) {
 
     const existingData = apiData;
 
+    const startDatePickerValue = startDatePickerInput.value;
+    const endDatePickerValue = endDatePickerInput.value
+
+    const parsedStartDate = new Date(startDatePickerValue);
+    const parsedEndDate = new Date(endDatePickerValue);
+    console.log("this is parsed Data", parsedStartDate);
+    console.log("this is parsed Data", parsedEndDate)
+
+    const isoStartDate = parsedStartDate.toISOString();
+    const isoEndDate = parsedEndDate.toISOString();
+
     const firstName = document.getElementById('addFirstName').value;
     const lastName = document.getElementById('addLastName').value;
     const leaveDropDown = document.getElementById('addLeaveDropDown').value;
     const description = document.getElementById('addDescription').value;
-    const startDate = startDatePickerInput.value;
-    const endDate = endDatePickerInput.value;
+    const apiPeriodStartDate = isoStartDate;
+    const apiPeriodEndDate = isoEndDate;
     let reason = document.getElementById('addLeaveDropDown').value;
 
     const uniqueID = `${Date.now()}_${idCounter}`;
@@ -114,9 +125,9 @@ function addHandleSubmit(event) {
         "lastName": lastName,
         "leaveDropDown": leaveDropDown,
         "description": description,
-        "startDate": startDate,
-        "endDate": endDate,
-        "reason": reason
+        "periodStartDate": apiPeriodStartDate,
+        "periodEndDate": apiPeriodEndDate,
+        "type": reason
     }
 
     console.log(inputData);
@@ -125,8 +136,8 @@ function addHandleSubmit(event) {
 
     const updatedData = JSON.stringify(existingData);
     const parsedData = JSON.parse(updatedData);
-    console.log('this is updatedData', updatedData);
-    console.log('this is parsedData', parsedData);
+    console.log("this is parsedData", parsedData);
+
     closeAddModal();
 }
 
@@ -240,12 +251,15 @@ const searchInput = document.getElementById('searchInput')
 
 function search() {
     const searchTerm = searchInput.value.toLowerCase()
+    const startDateFormat = formatDate(apiData.periodStartDate);
+    const endDateFormat = formatDate(apiData.periodEndDate);
+
     const filteredResults = apiData.filter(item =>
         item.firstName.toLowerCase().includes(searchTerm) ||
         item.lastName.toLowerCase().includes(searchTerm) ||
-        item.ID.includes(searchTerm) ||
-        item.startDate.toLowerCase().includes(searchTerm) ||
-        item.endDate.toLowerCase().includes(searchTerm) ||
+        item._id.includes(searchTerm) ||
+        startDateFormat.toLowerCase().includes(searchTerm) ||
+        endDateFormat.toLowerCase().includes(searchTerm) ||
         item.status.toLowerCase().includes(searchTerm)
     );
 

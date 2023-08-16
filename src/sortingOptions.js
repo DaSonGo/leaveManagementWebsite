@@ -1,4 +1,4 @@
-import listLoader, { createAndAppendElement } from "./listLoader.js";
+import listLoader, { createAndAppendElement, formatDate } from "./listLoader.js";
 import { list_items, list } from "./index.js";
 import apiDataFetcher from "./apiDataFetcher.js";
 export const apiData = await apiDataFetcher();
@@ -13,8 +13,8 @@ const sortingOptions = [
     sortBy: "lastName",
   },
   {
-    sortKey: "sort-ID",
-    sortBy: "ID",
+    sortKey: "sort-type",
+    sortBy: "type",
   },
   {
     sortKey: "sort-date",
@@ -50,10 +50,23 @@ function sort_array_by(array, sort) {
     }
 
     if (sort === 'date') {
-      const dateCheck = obj.date;
-      console.log('this is dateCheck', dateCheck);
-      const sortByContainer = -new Date(dateCheck);
+      const formatDateCheck = formatDate(obj.submissionDate)
+      console.log('this is dateCheck', formatDateCheck);
+      const sortByContainer = -new Date(formatDateCheck);
       return sortByContainer;
+    }
+
+    if (sort === 'type') {
+      const typeCheck = obj.type;
+      console.log('this is typeCheck', typeCheck);
+
+      if (typeCheck === 'WFH') {
+        return -1;
+      } else if (typeCheck === 'Sick Leave') {
+        return 1;
+      } else {
+        return 0;
+      }
     }
 
     return obj[sort];
