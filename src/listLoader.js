@@ -181,10 +181,11 @@ export function denyButtonHandler(id) {
     const denialReason = prompt("Enter reason for denial: ");
     if (denialReason) {
       console.log("Reason for denial: ", denialReason);
+      closeEditModal();
     }
 
     console.log("Item has been Denied:", item);
-    console.log('Form with ID ' + item.ID + ' has been denied');
+    console.log('Form with ID ' + item._id + ' has been denied');
   } else {
     console.log("form not found", id);
   }

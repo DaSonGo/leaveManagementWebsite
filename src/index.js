@@ -1,5 +1,6 @@
 import JSONFileFetcher from "./JSONFileFetcher.js";
 import apiDataFetcher from "./apiDataFetcher.js";
+import { addAbsence, API_URL } from "./apiDataPoster.js";
 
 // import addForm from "./addForm.js";
 import { openEditModal, closeEditModal, populateFormFields, editHandleSubmit, acceptButtonHandler, denyButtonHandler, formatDate } from './listLoader.js';
@@ -82,7 +83,7 @@ function closeAddModal() {
 }
 
 let idCounter = 0;
-function addHandleSubmit(event) {
+async function addHandleSubmit(event) {
     event.preventDefault();
 
     const existingData = apiData;
@@ -129,14 +130,26 @@ function addHandleSubmit(event) {
         "periodEndDate": apiPeriodEndDate,
         "type": reason
     }
-
     console.log(inputData);
 
-    existingData.push(inputData);
+    let response;
+    console.log('this is response before try block', response)
+    try {
+        response = await addAbsence(API_URL, inputData);
+        console.log("API RESPONSE in try block", response);
+    } catch (error) {
+        console.error('Error during API request:', error);
+        console.log('Response text:', await response.text()); // Log the response text
+        throw error;
+    }
 
-    const updatedData = JSON.stringify(existingData);
-    const parsedData = JSON.parse(updatedData);
-    console.log("this is parsedData", parsedData);
+
+
+    // existingData.push(inputData);
+
+    // const updatedData = JSON.stringify(existingData);
+    // const parsedData = JSON.parse(updatedData);
+    // console.log("this is parsedData", parsedData);
 
     closeAddModal();
 }
